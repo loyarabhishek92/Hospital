@@ -1,0 +1,22 @@
+{
+  "name": "hospital",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loyarabhishek92/Hospital.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/loyarabhishek92/Hospital/issues"
+  },
+  "homepage": "https://github.com/loyarabhishek92/Hospital#readme"
+}
