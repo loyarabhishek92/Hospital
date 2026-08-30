@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
+import doctorRoutes from './routes/doctorRoutes.js';
+import serviceRoutes from './routes/serviceRoutes.js'
+import newsRouters from './routes/newsRoutes.js';
+import appointmentRouters from './routes/appointmentRoutes.js';
 
 const app = express();
 const port = 5000;
@@ -15,6 +19,9 @@ app.use(fileUpload({
 }));
 
 app.use(express.static('uploads/users'));
+app.use(express.static('uploads/doctors'));
+app.use(express.static('uploads/services'));
+app.use(express.static('uploads/news'));
 
 app.use(cors({
     origin: 'http://localhost:5173'
@@ -38,3 +45,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/api/user', userRoutes);
+app.use('/api/doctors', doctorRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/news', newsRouters);
+app.use('/api/appointment', appointmentRouters);
