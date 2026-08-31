@@ -4,11 +4,16 @@ import location from "../assets/icons/location.svg";
 import { NavLink } from "react-router-dom";
 import { Button } from "./ui/button.jsx";
 import { Search } from "lucide-react";
+import { useSelector } from "react-redux";
+import DropDownMenu from "./DropDownMenu.jsx";
 
 export default function Header() {
+
+    const { user } = useSelector(state => state.userSlice);
+
     return (
         <div>
-            <div className="flex justify-between items-center gap-20 px-65 py-5">
+            <div className="flex justify-between items-center gap-20 px-50 py-5">
                 <div className="text-4xl font-serif font-extrabold">
                     <span className="text-black">MED</span>
                     <span className="text-[#159EEC]">DICAL</span>
@@ -48,7 +53,7 @@ export default function Header() {
                 </div>
             </div>
 
-            <div className="flex items-center justify-between bg-[#1F2B6C] px-65 py-5 text-white">
+            <div className="flex items-center justify-between bg-[#1F2B6C] px-50 py-5 text-white">
                 <nav className="flex gap-5">
                     <NavLink to={'/'}>Home</NavLink>
                     <NavLink to={'/about'}>About Us</NavLink>
@@ -56,8 +61,14 @@ export default function Header() {
                     <NavLink to={'/doctor'}>Doctors</NavLink>
                     <NavLink to={'/news'}>News</NavLink>
                     <NavLink to={'/contact'}>Contact</NavLink>
-                    <NavLink to={'/login'}>Login</NavLink>
-                    <NavLink to={'/register'}>Sign up</NavLink>
+                    <div>
+                        {user ? <DropDownMenu user={user} /> : <div> <NavLink to={'/login'}>Login</NavLink>
+                            <NavLink to={'/register'}>Sign up</NavLink></div>}
+
+                    </div>
+
+
+
 
                 </nav>
 
