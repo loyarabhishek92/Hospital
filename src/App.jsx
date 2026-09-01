@@ -10,6 +10,9 @@ import News from "./pages/news/News.jsx";
 import Contact from "./pages/contacts/Contact.jsx";
 import Register from "./features/auth/Register.jsx";
 import Login from "./features/auth/Login.jsx";
+import UserProfile from "./features/user/UserProfile.jsx";
+import AdminPage from "./features/admin/AdminPage.jsx";
+import DoctorProfile from "./features/admin/add/doctor/DoctorProfile.jsx";
 
 
 
@@ -51,6 +54,18 @@ export default function App() {
         {
           path: '/login',
           element: <Login />
+        },
+        {
+          path: '/profile',
+          element: <UserProfile />
+        },
+        {
+          path: 'admin',
+          element: <AdminPage />
+        },
+        {
+          path: 'doctorprofile',
+          element: <DoctorProfile />
         },
         {
           path: '*',
