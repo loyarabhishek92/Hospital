@@ -13,6 +13,8 @@ import Login from "./features/auth/Login.jsx";
 import UserProfile from "./features/user/UserProfile.jsx";
 import AdminPage from "./features/admin/AdminPage.jsx";
 import DoctorProfile from "./features/admin/add/doctor/DoctorProfile.jsx";
+import AddDoctor from "./features/admin/add/doctor/form/AddDoctor.jsx";
+import EditDoctor from "./features/admin/add/doctor/form/EditDoctor.jsx";
 
 
 
@@ -66,6 +68,14 @@ export default function App() {
         {
           path: 'doctorprofile',
           element: <DoctorProfile />
+        },
+        {
+          path: 'form/addDoctor',
+          element: <AddDoctor />
+        },
+        {
+          path: 'form/editDoctor/:id',
+          element: <EditDoctor />
         },
         {
           path: '*',
