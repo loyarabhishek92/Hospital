@@ -1,3 +1,4 @@
+
 import Appointment from "../models/Appointment.js";
 
 
@@ -18,4 +19,15 @@ export const mine = async (req, res) => {
         return res.status(400).json(err.message);
     }
 
+}
+
+
+export const getAppointments = async(req, res) => {
+    try {
+        const allAppointments = await Appointment.find({});
+        return res.status(200).json({allAppointments});
+    } catch (err) {
+        return res.status(400).json({message: err.message});
+    }
+   
 }
