@@ -40,7 +40,7 @@ export default function AddDoctor() {
     const [addDoctor, {isLoading}] = useAddDoctorMutation();
     const nav = useNavigate();
   return (
-     <div className="mt-5">
+     <div className="mt-5 px-50">
             <Card className="w-full">
                 <CardHeader>
                     <CardTitle>Add your Doctor</CardTitle>

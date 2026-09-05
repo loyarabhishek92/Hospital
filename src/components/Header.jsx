@@ -1,13 +1,14 @@
 import call from "../assets/icons/call.svg";
 import time from "../assets/icons/time.svg";
 import location from "../assets/icons/location.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button.jsx";
 import { Search } from "lucide-react";
 import { useSelector } from "react-redux";
 import DropDownMenu from "./DropDownMenu.jsx";
 
 export default function Header() {
+    const nav = useNavigate();
 
     const { user } = useSelector(state => state.userSlice);
 
@@ -74,7 +75,7 @@ export default function Header() {
 
                 <div className="flex gap-3 items-center">
                     <Search />
-                    <Button className="text-black">Appointment</Button>
+                    <Button className="text-black" onClick={() => nav('/appointment')}>Appointment</Button>
 
                 </div>
 

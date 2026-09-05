@@ -15,6 +15,16 @@ import AdminPage from "./features/admin/AdminPage.jsx";
 import DoctorProfile from "./features/admin/add/doctor/DoctorProfile.jsx";
 import AddDoctor from "./features/admin/add/doctor/form/AddDoctor.jsx";
 import EditDoctor from "./features/admin/add/doctor/form/EditDoctor.jsx";
+import ServiceProfile from "./features/admin/add/service/ServiceProfile.jsx";
+import AddService from "./features/admin/add/service/form/AddService.jsx";
+import EditService from "./features/admin/add/service/form/EditService.jsx";
+import NewsProfile from "./features/admin/add/news/NewsProfile.jsx";
+import AddNews from "./features/admin/add/news/form/AddNews.jsx";
+import EditNews from "./features/admin/add/news/form/EditNews.jsx";
+import AppointmentProfile from "./features/admin/watch/AppointmentProfile.jsx";
+import ContactProfile from "./features/admin/watch/ContactProfile.jsx";
+import Appointment from "./pages/appointment/Appointment.jsx";
+
 
 
 
@@ -50,6 +60,10 @@ export default function App() {
           element: <Contact />
         },
         {
+          path: '/appointment',
+          element: <Appointment />
+        },
+        {
           path: '/register',
           element: <Register />
         },
@@ -76,6 +90,38 @@ export default function App() {
         {
           path: 'form/editDoctor/:id',
           element: <EditDoctor />
+        },
+        {
+          path: 'serviceprofile',
+          element: <ServiceProfile />
+        },
+        {
+          path: 'form/addService',
+          element: <AddService />
+        },
+        {
+          path: 'form/editService/:id',
+          element: <EditService />
+        },
+        {
+          path: 'newsprofile',
+          element: <NewsProfile />
+        },
+        {
+          path: 'form/addNews',
+          element: <AddNews />
+        },
+        {
+          path: 'form/editNews/:id',
+          element: <EditNews />
+        },
+        {
+          path: 'adminappointment',
+          element: <AppointmentProfile />
+        },
+        {
+          path: 'admincontact',
+          element: <ContactProfile />
         },
         {
           path: '*',

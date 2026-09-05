@@ -18,7 +18,7 @@ export default function DoctorProfile() {
 
 
   return (
-    <div className="pt-10">
+    <div className="pt-10 px-50">
             <div className="flex justify-end">
                 <Button onClick={() => nav('/form/addDoctor')} className= 'bg-blue-700'>Add Doctor</Button>
             </div>

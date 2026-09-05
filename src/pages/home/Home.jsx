@@ -2,7 +2,7 @@ import hero from "@/assets/images/hero.png";
 
 export default function Home() {
   return (
-    <section className="relative min-h-[680px] overflow-hidden">
+    <section className="relative min-h-70 overflow-hidden">
       
       {/* Background Image */}
       <div
