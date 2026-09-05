@@ -1,12 +1,21 @@
 import express from 'express';
 import { adminCheck, userCheck } from '../middlewares/userCheck.js';
-import { create, getAppointments, mine } from '../controllers/appointmentController.js';
+import { createAppointment, deleteAppointment, getAppointment, getAppointments } from '../controllers/appointmentController.js';
 import { methodNotAllow } from '../utils/methodNotAllow.js';
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
-router.route('/').post(userCheck, create).get(userCheck, adminCheck, getAppointments).all(methodNotAllow);
+router.route('/').get(getAppointments).post(userCheck, createAppointment).all(methodNotAllow);
 
-router.route('/my').get(userCheck, mine).all(methodNotAllow);
+router.param('id', (req, res, next, id) => {
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).json({message: 'Invalid ID'});
+    }
+    req.id = id;
+    next();
+});
+
+router.route('/:id').get(getAppointment).delete(userCheck, adminCheck, deleteAppointment).all(methodNotAllow);
 
 export default router;

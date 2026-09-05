@@ -17,9 +17,28 @@ export const getContacts = async(req, res) => {
         return res.status(200).json({
             success: true,
             count: getAllContacts.length,
-            data: getAllContacts
+            contacts: getAllContacts
         });
     } catch (err) {
         return res.status(400).json({message: err.message});
+    }
+}
+
+
+
+export const deleteContact = async (req, res) => {
+    try {
+        const isExist = await Contact.findById(req.id);
+
+        if (!isExist) {
+            return res.status(404).json({ message: 'Contact not found' });
+        }
+
+
+        await isExist.deleteOne();
+        return res.status(200).json({ message: 'Contact deleted successfully' });
+
+    } catch (err) {
+        return res.status(400).json({ message: err.message });
     }
 }

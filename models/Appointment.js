@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 export const appointmentSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
     name: {
         type: String,
         required: true
@@ -25,13 +21,11 @@ export const appointmentSchema = new mongoose.Schema({
         required: true
     },
     doctor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Doctor',
+        type: String,
         required: true
     },
     department: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Service',
+        type: String,
         required: true
     },
     message: String,
