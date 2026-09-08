@@ -36,11 +36,11 @@ const addSchema = Yup.object({
 
 
 export default function AddDoctor() {
-    const {user} = useSelector(state => state.userSlice);
-    const [addDoctor, {isLoading}] = useAddDoctorMutation();
+    const { user } = useSelector(state => state.userSlice);
+    const [addDoctor, { isLoading }] = useAddDoctorMutation();
     const nav = useNavigate();
-  return (
-     <div className="mt-5 px-50">
+    return (
+        <div className="mt-5 px-50">
             <Card className="w-full">
                 <CardHeader>
                     <CardTitle>Add your Doctor</CardTitle>
@@ -109,7 +109,7 @@ export default function AddDoctor() {
                                         {errors.name && touched.name && <p className="text-destructive">{errors.name}</p>}
                                     </div>
 
-                                    
+
 
 
                                     <div className="grid gap-2">
@@ -118,6 +118,7 @@ export default function AddDoctor() {
 
                                         <Select onValueChange={(val) => {
                                             setFieldValue('specialist', val)
+                                            
                                         }}>
                                             <SelectTrigger className="w-full">
                                                 <SelectValue placeholder="Select a Specialist" />
@@ -139,7 +140,7 @@ export default function AddDoctor() {
                                     </div>
 
 
-                                
+
 
                                     <div className="grid gap-2">
                                         <Label htmlFor="linkedinId">LinkedinId</Label>
@@ -173,7 +174,7 @@ export default function AddDoctor() {
 
 
 
-                                     <div className="grid gap-2">
+                                    <div className="grid gap-2">
                                         <Label htmlFor="instagramId">InstagramId</Label>
                                         <Input
                                             onChange={handleChange}
@@ -233,5 +234,5 @@ export default function AddDoctor() {
 
             </Card>
         </div>
-  )
+    )
 }

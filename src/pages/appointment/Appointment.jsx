@@ -1,8 +1,20 @@
 import appointment from "@/assets/images/appointment.png";
 import appointmentCover from "@/assets/images/appointmentCover.png";
+import call from "@/assets/icons/call.svg";
+import AppointmentForm from "@/components/AppointmentForm.jsx";
+import GoogleMap from "@/components/GoogleMap.jsx";
+import Footer from "@/components/Footer.jsx";
+
+
+
+
+
 
 
 export default function Appointment() {
+
+
+
     return (
         <div>
             <section className="relative min-h-70 overflow-hidden">
@@ -39,212 +51,14 @@ export default function Appointment() {
 
 
 
-
-
-                    <div className="bg-[#202f72] rounded-md mt-10">
-                        <form>
-                            {/* Name & Gender */}
-                            <div className="grid grid-cols-1 md:grid-cols-2">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    className="h-16 w-full border-b border-r-0 border-[#b7c6ec] bg-transparent px-6 text-white placeholder:text-white outline-none md:border-r"
-                                />
-
-                                <div className="relative">
-                                    <select
-                                        name="gender"
-                                        className="h-16 w-full appearance-none border-b border-[#b7c6ec] bg-transparent px-6 pr-12 text-white outline-none"
-                                    >
-                                        <option value="" className="text-black">
-                                            Gender
-                                        </option>
-                                        <option value="Male" className="text-black">
-                                            Male
-                                        </option>
-                                        <option value="Female" className="text-black">
-                                            Female
-                                        </option>
-                                        <option value="Other" className="text-black">
-                                            Other
-                                        </option>
-                                    </select>
-
-                                    <span className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2">
-                                        <svg
-                                            width="14"
-                                            height="9"
-                                            viewBox="0 0 14 9"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M1.5 1.5L7 7L12.5 1.5"
-                                                stroke="#C5D3F5"
-                                                strokeWidth="3"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Email & Phone */}
-                            <div className="grid grid-cols-1 md:grid-cols-2">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    className="h-16 w-full border-b border-[#b7c6ec] bg-transparent px-6 text-white placeholder:text-white outline-none md:border-r"
-                                />
-
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    placeholder="Phone"
-                                    className="h-16 w-full border-b border-[#b7c6ec] bg-transparent px-6 text-white placeholder:text-white outline-none"
-                                />
-                            </div>
-
-                            {/* Date & Time */}
-                            <div className="grid grid-cols-1 md:grid-cols-2">
-                                <div className="relative">
-                                    <input
-                                        type="date"
-                                        name="date"
-                                        className="h-16 w-full border-b border-[#b7c6ec] bg-transparent px-6 text-white outline-none md:border-r"
-                                    />
-
-                                    {(
-                                        <span className="pointer-events-none absolute left-6 top-1/2 -translate-y-1/2 text-white">
-                                            Date
-                                        </span>
-                                    )}
-                                </div>
-
-                                <div className="relative">
-                                    <input
-                                        type="time"
-                                        name="time"
-                                        className="h-16 w-full border-b border-[#b7c6ec] bg-transparent px-6 text-[19px] text-white outline-none"
-                                    />
-
-                                    {(
-                                        <span className="pointer-events-none absolute left-6 top-1/2 -translate-y-1/2 text-white">
-                                            Time
-                                        </span>
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* Doctor & Department */}
-                            <div className="grid grid-cols-1 md:grid-cols-2">
-                                <div className="relative">
-                                    <select
-                                        name="doctor"
-                                        className="h-16 w-full appearance-none border-b border-[#b7c6ec] bg-transparent px-6 pr-12 text-white outline-none md:border-r"
-                                    >
-                                        <option value="" className="text-black">
-                                            Doctor
-                                        </option>
-                                        <option value="Dr. John" className="text-black">
-                                            Dr. John
-                                        </option>
-                                        <option value="Dr. Smith" className="text-black">
-                                            Dr. Smith
-                                        </option>
-                                        <option value="Dr. David" className="text-black">
-                                            Dr. David
-                                        </option>
-                                    </select>
-
-                                    <span className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2">
-                                        <svg
-                                            width="14"
-                                            height="9"
-                                            viewBox="0 0 14 9"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M1.5 1.5L7 7L12.5 1.5"
-                                                stroke="#C5D3F5"
-                                                strokeWidth="3"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    </span>
-                                </div>
-
-                                <div className="relative">
-                                    <select
-                                        name="department"
-                                        className="h-16 w-full appearance-none border-b border-[#b7c6ec] bg-transparent px-6 pr-12 text-white outline-none"
-                                    >
-                                        <option value="" className="text-black">
-                                            Department
-                                        </option>
-                                        <option value="Cardiology" className="text-black">
-                                            Cardiology
-                                        </option>
-                                        <option value="Neurology" className="text-black">
-                                            Neurology
-                                        </option>
-                                        <option value="Dental" className="text-black">
-                                            Dental
-                                        </option>
-                                        <option value="Orthopedic" className="text-black">
-                                            Orthopedic
-                                        </option>
-                                    </select>
-
-                                    <span className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2">
-                                        <svg
-                                            width="14"
-                                            height="9"
-                                            viewBox="0 0 14 9"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M1.5 1.5L7 7L12.5 1.5"
-                                                stroke="#C5D3F5"
-                                                strokeWidth="3"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Message */}
-                            <textarea
-                                name="message"
-                                placeholder="Message"
-                                rows="7"
-                                className="block w-full resize-none bg-transparent px-6 py-5 text-white placeholder:text-white outline-none"
-                            />
-
-                            {/* Submit */}
-                            <button
-                                type="submit"
-                                className="h-16 w-full bg-[#bfd1f7] font-medium tracking-wide text-[#273574] transition hover:bg-[#aec4f2]"
-                            >
-                                SUBMIT
-                            </button>
-                        </form>
-                    </div>
-
-
-
-
+                    {/* appointment form  */}
+                    <AppointmentForm />
 
                 </div>
 
+                {/* schedule hours */}
                 <div className="bg-[#202f72] text-white py-15 px-15 rounded-md">
-                    <h1 className="text-6xl text-center font-serif">Shedule hours</h1>
+                    <h1 className="text-6xl text-center font-serif text-[#BFD2F8]">Shedule hours</h1>
 
 
                     <div className="mt-15 flex flex-col gap-y-7 font-serif">
@@ -289,10 +103,46 @@ export default function Appointment() {
                     <hr className="mt-10 mx-10 text-2xl" />
 
 
+
+                    <div className="flex gap-3 items-center justify-center mt-10 text-2xl">
+                        <div>
+                            <img src={call} className="h-15 w-15" alt="call" />
+                        </div>
+                        <div>
+                            <p className="text-3xl font-serif tracking-wider">Emergency</p>
+                            <p className="text-[#bfd1f7]">(237) 542-254-854</p>
+                        </div>
+                    </div>
+
+
                 </div>
 
             </div>
-            djflasjf
+
+            {/* Google Map  */}
+            <div className="mx-50 mt-15">
+                <GoogleMap />
+            </div>
+
+            {/* contact section  */}
+            <div className="mx-50 mt-15">
+                <div className="flex flex-col gap-x-5 justify-center items-center">
+                    <h2 className="uppercase text-xl text-blue-500 tracking-wider font-extrabold">Get in touch</h2>
+                    <h1 className="text-4xl font-serif tracking-wider">Contact</h1>
+                </div>
+
+                <div className="grid grid-cols-4 gap-x-5 mt-10">
+                    <div className="bg-amber-400  py-10 pl-7 rounded-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis nulla odit libero quia aspernatur ut, ad perferendis sequi architecto nobis veniam neque! Fuga quos eum at odio facilis commodi qui!</div>
+                    <div className="bg-amber-400  py-10 pl-7 rounded-sm">2</div>
+                    <div className="bg-amber-400  py-10 pl-7 rounded-sm">3</div>
+                    <div className="bg-amber-400 py-10 pl-7 rounded-sm">4</div>
+                </div>
+            </div>
+
+            {/* footer section  */}
+            <div>
+                <Footer />
+            </div>
         </div>
     )
 }
