@@ -24,6 +24,7 @@ import EditNews from "./features/admin/add/news/form/EditNews.jsx";
 import AppointmentProfile from "./features/admin/watch/AppointmentProfile.jsx";
 import ContactProfile from "./features/admin/watch/ContactProfile.jsx";
 import Appointment from "./pages/appointment/Appointment.jsx";
+import NewsDetails from "./pages/news/NewsDetails.jsx";
 
 
 
@@ -54,6 +55,10 @@ export default function App() {
         {
           path: '/news',
           element: <News />
+        },
+        {
+          path:'news/:id',
+          element: <NewsDetails />
         },
         {
           path: '/contact',

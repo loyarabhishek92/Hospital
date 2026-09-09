@@ -161,11 +161,11 @@ export default function AppointmentForm() {
                                 </Select>
 
                                 {touched.gender &&
-              errors.gender && (
-                <p className="px-6 pb-2 text-sm text-red-300">
-                  {errors.gender}
-                </p>
-            )}
+                                    errors.gender && (
+                                        <p className="px-6 pb-2 text-sm text-red-300">
+                                            {errors.gender}
+                                        </p>
+                                    )}
                             </div>
 
                             {/* EMAIL */}
@@ -191,11 +191,11 @@ export default function AppointmentForm() {
                                 />
 
                                 {touched.email &&
-              errors.email && (
-                <p className="px-6 pb-2 text-sm text-red-300">
-                  {errors.email}
-                </p>
-            )}
+                                    errors.email && (
+                                        <p className="px-6 pb-2 text-sm text-red-300">
+                                            {errors.email}
+                                        </p>
+                                    )}
                             </div>
 
                             {/* PHONE */}
@@ -221,11 +221,11 @@ export default function AppointmentForm() {
                                 />
 
                                 {touched.phone &&
-              errors.phone && (
-                <p className="px-6 pb-2 text-sm text-red-300">
-                  {errors.phone}
-                </p>
-            )}
+                                    errors.phone && (
+                                        <p className="px-6 pb-2 text-sm text-red-300">
+                                            {errors.phone}
+                                        </p>
+                                    )}
                             </div>
 
                             {/* DATE */}
@@ -247,12 +247,12 @@ export default function AppointmentForm() {
                 focus-visible:ring-0
               "
                                 />
-{touched.date &&
-              errors.date && (
-                <p className="px-6 pb-2 text-sm text-red-300">
-                  {errors.date}
-                </p>
-            )}
+                                {touched.date &&
+                                    errors.date && (
+                                        <p className="px-6 pb-2 text-sm text-red-300">
+                                            {errors.date}
+                                        </p>
+                                    )}
 
                             </div>
 
@@ -275,12 +275,12 @@ export default function AppointmentForm() {
                 focus-visible:ring-0
               "
                                 />
-{touched.time &&
-              errors.time && (
-                <p className="px-6 pb-2 text-sm text-red-300">
-                  {errors.time}
-                </p>
-            )}
+                                {touched.time &&
+                                    errors.time && (
+                                        <p className="px-6 pb-2 text-sm text-red-300">
+                                            {errors.time}
+                                        </p>
+                                    )}
 
                             </div>
 
@@ -319,12 +319,12 @@ export default function AppointmentForm() {
                                         ))}
                                     </SelectContent>
                                 </Select>
-{touched.doctor &&
-              errors.doctor && (
-                <p className="px-6 pb-2 text-sm text-red-300">
-                  {errors.doctor}
-                </p>
-            )}
+                                {touched.doctor &&
+                                    errors.doctor && (
+                                        <p className="px-6 pb-2 text-sm text-red-300">
+                                            {errors.doctor}
+                                        </p>
+                                    )}
 
                             </div>
 
@@ -367,12 +367,12 @@ export default function AppointmentForm() {
                                     </SelectContent>
                                 </Select>
 
-{touched.department &&
-              errors.department && (
-                <p className="px-6 pb-2 text-sm text-red-300">
-                  {errors.department}
-                </p>
-            )}
+                                {touched.department &&
+                                    errors.department && (
+                                        <p className="px-6 pb-2 text-sm text-red-300">
+                                            {errors.department}
+                                        </p>
+                                    )}
                             </div>
 
                             {/* MESSAGE */}
