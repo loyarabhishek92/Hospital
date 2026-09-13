@@ -26,6 +26,7 @@ import ContactProfile from "./features/admin/watch/ContactProfile.jsx";
 import Appointment from "./pages/appointment/Appointment.jsx";
 import NewsDetails from "./pages/news/NewsDetails.jsx";
 import DoctorDetails from "./pages/doctors/DoctorDetails.jsx";
+import ServiceDetails from "./pages/services/ServiceDetails.jsx";
 
 
 
@@ -48,6 +49,10 @@ export default function App() {
         {
           path: '/service',
           element: <Service />
+        },
+        {
+          path: 'service/:id',
+          element: <ServiceDetails />
         },
         {
           path: '/doctor',

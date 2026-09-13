@@ -1,0 +1,40 @@
+import { base } from "@/app/mainApi.js";
+import { useGetDoctorsQuery } from "@/features/admin/add/doctor/doctorApi.js";
+import { useNavigate } from "react-router-dom";
+
+
+export default function CommonDoctor() {
+
+     const { data, isLoading, error } = useGetDoctorsQuery();
+  const nav = useNavigate();
+
+  if (isLoading) return <h1>Loading...</h1>
+  if (error) return <h1>{error.data.message}</h1>
+  return (
+    <div>
+      <div className='mx-50 mt-15 grid grid-cols-3 gap-6'>
+              {data.doctors?.map((doctor, index) => (
+                <div key={index} className='rounded-sm'>
+                  <img src={`${base}/${doctor.image}`} alt="image" className='rounded-t-sm object-cover h-80 w-full' />
+                  <div className='flex flex-col items-center space-y-2 py-5 bg-[#BFD2F8]'>
+                    <h1>{doctor.name}</h1>
+                    <h1 className='text-2xl font-bold tracking-wider'>{doctor.specialist}</h1>
+      
+                    <div className='flex space-x-2.5'>
+                      <span>linkdin</span>
+                      <span>facebook</span>
+                      <span>insta</span>
+                    </div>
+      
+                  </div>
+      
+                  <div className='text-center py-3 bg-[#202f72] text-[#BFD2F8] rounded-b-sm cursor-pointer' onClick={() => nav(`/doctor/${doctor._id}`)}>
+                    View Profile
+                  </div>
+                </div>
+              ))}
+      
+            </div>
+    </div>
+  )
+}

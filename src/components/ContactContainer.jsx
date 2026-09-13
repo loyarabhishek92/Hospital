@@ -4,7 +4,7 @@ import { Clock, LocationEdit, Mail, PhoneCall } from "lucide-react";
 export default function ContactContainer() {
   return (
     <div>
-       <div className="mx-50 mt-15">
+      <div className="mx-50 mt-15">
         <div className="flex flex-col gap-x-5 justify-center items-center">
           <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Get in touch</h2>
           <h1 className="text-3xl font-serif font-bold tracking-wider">Contact</h1>

@@ -76,7 +76,7 @@ export default function DropDownMenu({ user }) {
                         </Avatar>
                     </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end" className='absolute mt-5'>
                     <DropdownMenuGroup>
                         {litsItems.map((item, index) => (
                             <DropdownMenuItem
