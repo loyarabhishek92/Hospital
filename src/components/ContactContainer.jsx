@@ -7,10 +7,10 @@ export default function ContactContainer() {
       <div className="mx-50 mt-15">
         <div className="flex flex-col gap-x-5 justify-center items-center">
           <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Get in touch</h2>
-          <h1 className="text-3xl font-serif font-bold tracking-wider">Contact</h1>
+          <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">Contact</h1>
         </div>
 
-        <div className="grid grid-cols-4 gap-x-5 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-5 mt-10">
           <div className="bg-[#BFD2F8]  py-15 pl-7 rounded-sm flex flex-col gap-y-1.5">
             <PhoneCall className="h-8 w-8" />
             <h1 className="text-xl uppercase font-bold font-serif tracking-wider">Emergency</h1>

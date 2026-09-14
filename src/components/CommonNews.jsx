@@ -28,11 +28,11 @@ export default function CommonNews() {
 
             <div className="flex flex-col gap-x-5 justify-center items-center">
                 <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Better information, Better health</h2>
-                <h1 className="text-3xl font-serif font-bold tracking-wider">News</h1>
+                <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">News</h1>
             </div>
 
 
-            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-20">
+            <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-20">
 
                 {data.news?.map((news) => (
                 <div className="flex gap-x-3.5 overflow-hidden rounded-sm shadow-md hover:shadow-xl transition duration-300 group bg-gray-50" key={news._id}  onClick={() => nav(`/news/${news._id}`)}>

@@ -16,7 +16,7 @@ export default function Header() {
         <div className="sticky top-0 z-100">
             <div className="flex justify-between bg-white items-center gap-20 px-50 py-5">
                 <div className="text-4xl font-serif font-extrabold">
-                    <span className="text-black">MED</span>
+                    <span className="text-[#253477]">MED</span>
                     <span className="text-[#159EEC]">DICAL</span>
                 </div>
 
