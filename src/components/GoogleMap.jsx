@@ -1,4 +1,4 @@
-import React from "react"
+
 import {
   MapContainer,
   TileLayer,
@@ -24,7 +24,7 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function GoogleMap() {
-      // New York coordinates
+  // New York coordinates
   const position = [27.7172, 85.3240];
   return (
     <div className="w-full overflow-hidden rounded-xl shadow-lg">

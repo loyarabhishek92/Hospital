@@ -6,8 +6,8 @@ import { Input } from "./ui/input.jsx";
 
 export default function Footer() {
   return (
-    <div className="bg-[#1F2B6C] text-gray-50 font-work-sans mt-20">
-      <div className="px-50 grid grid-cols-4 justify-between pt-10">
+    <div className="bg-[#1F2B6C] text-gray-50 font-work-sans">
+      <div className=" grid grid-cols-2 lg:grid-cols-4 gap-10 justify-between pt-10 mx-auto px-5 mt-20 max-w-7xl lg:px-8">
 
         <div className="flex flex-col gap-y-4">
           <h1 className="text-4xl font-serif font-extrabold uppercase text-[#BFD2F8]">meddical</h1>
@@ -43,9 +43,9 @@ export default function Footer() {
 
       </div>
 
-      <hr className="mt-10 mx-50" />
+      <hr className="mt-10  mx-auto px-5 max-w-7xl lg:px-8" />
 
-      <div className="flex justify-between px-50 pb-20 pt-10">
+      <div className="flex justify-between pb-10 lg:pb-20 pt-5 lg:pt-10 mx-auto px-5 mt-10 lg:mt-20 max-w-7xl lg:px-8">
         <h2>&copy; 2026 Gupta Care pvt.ltd All Rights Reserved by DevMERNyar.Coder</h2>
         <div className="flex">
           <div><a href="">linkedin icon</a></div>

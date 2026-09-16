@@ -12,7 +12,7 @@ export default function CommonDoctor() {
   if (error) return <h1>{error.data.message}</h1>
   return (
     <div>
-      <div className='mx-50 mt-15 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+      <div className='mx-auto px-5 max-w-7xl lg:px-8 mt-15 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {data.doctors?.map((doctor, index) => (
                 <div key={index} className='rounded-sm'>
                   <img src={`${base}/${doctor.image}`} alt="image" className='rounded-t-sm object-cover h-80 w-full' />

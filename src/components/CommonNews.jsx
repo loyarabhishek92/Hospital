@@ -24,7 +24,7 @@ export default function CommonNews() {
 
    
     return (
-        <div className="mt-30 mx-50">
+        <div className="mx-auto px-5 mt-30 max-w-7xl lg:px-8">
 
             <div className="flex flex-col gap-x-5 justify-center items-center">
                 <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Better information, Better health</h2>

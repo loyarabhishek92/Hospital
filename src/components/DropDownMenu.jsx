@@ -66,7 +66,7 @@ export default function DropDownMenu({ user }) {
         nav('/');
     }
     return (
-        <div>
+        <div className="hidden h-11 w-11 overflow-hidden rounded-full border-2 border-white sm:block">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="rounded-full">

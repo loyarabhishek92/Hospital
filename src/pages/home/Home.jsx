@@ -1,7 +1,14 @@
 import doctorphoto from '@/assets/images/doctor.png'
 import appointmentCover from '@/assets/images/appointmentCover.png'
-import hero from "@/assets/images/hero.png";
 import homeApp from '@/assets/images/homeApp.png';
+import serviceimg1 from '@/assets/images/serviceimg1.png';
+import serviceimg2 from '@/assets/images/serviceimg2.png';
+import h1 from '@/assets/images/h1.png';
+import h2 from '@/assets/images/h2.png';
+import h3 from '@/assets/images/h3.png';
+import h4 from '@/assets/images/h4.png';
+import h5 from '@/assets/images/h5.png';
+
 import AppointmentForm from "@/components/AppointmentForm.jsx";
 import CommonDoctor from "@/components/CommonDoctor.jsx";
 import CommonNews from "@/components/CommonNews.jsx";
@@ -11,6 +18,7 @@ import { useGetDoctorsQuery } from "@/features/admin/add/doctor/doctorApi.js";
 import { ArrowRight, HeartPulse } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { useGetServicesQuery } from '@/features/admin/add/service/serviceApi.js';
+import { Button } from '@/components/ui/button.jsx';
 
 export default function Home() {
   const { data, isLoading, error } = useGetDoctorsQuery();
@@ -21,55 +29,30 @@ export default function Home() {
   if (error) return <h1>{error.data}</h1>
   return (
     <div>
-      <section className="relative min-h-70 overflow-hidden">
+      {/* hero section  */}
+      <section className="relative overflow-hidden">
+        <img src={h1} alt="image" className="w-full h-full object-cover" />
+        <img src={h2} alt="image" className="absolute inset-0 w-full h-full object-cover " />
+        <img src={h3} alt="image" className="absolute inset-0 w-full h-full object-cover " />
+        <img src={h4} alt="image" className="absolute inset-0 w-full h-full object-cover " />
+        <img src={h5} alt="image" className="absolute inset-0 w-full h-full object-cover " />
 
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${hero})`,
-          }}
-        ></div>
+        <div className='absolute inset-0 w-full h-full mx-50 flex flex-col justify-center space-y-3'>
+          <h2 className="uppercase text-blue-400 text-xl tracking-wider font-medium ">caring for life</h2>
+          <h1 className="text-5xl font-serif font-bold tracking-wider text-[#253477]">Leading the Way <br /> in Medical Excellence </h1>
 
-
-        {/* Hero Content */}
-        <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-6 lg:px-10">
-
-          <div className="max-w-2xl">
-
-            {/* Small Heading */}
-            <p className="mb-4 text-lg font-bold uppercase tracking-[0.3em] text-sky-500">
-              Caring for Life
-            </p>
-
-            {/* Main Heading */}
-            <h1 className="max-w-xl font-serif text-5xl font-bold leading-[1.15] text-[#202f72] md:text-6xl">
-              Leading the Way
-              <br />
-              in Medical Excellence
-            </h1>
-
-            {/* Button */}
-            <button
-              className="mt-10 rounded-full bg-[#c3d5ff] px-11 py-4 
-                       text-lg font-semibold text-[#202f72]
-                       transition duration-300
-                       hover:bg-[#202f72] hover:text-white
-                       hover:shadow-lg"
-            >
-              Our Services
-            </button>
-
-          </div>
+          <Button className="text-black mt-10 w-fit px-10 py-6 rounded-full" onClick={() => nav('/service')}>Our Services</Button>
         </div>
+
+
       </section>
 
       {/* about section  */}
-      <div className='mx-50 mt-15 flex flex-col items-center justify-center space-y-2'>
+      <div className='mx-auto px-5  mt-15 flex flex-col items-center justify-center space-y-2 lg:px-8 lg:flex lg:flex-col lg:items-center lg:justify-center lg:space-y-1'>
 
         <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">welcome to meddical </h2>
         <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">A Great Place to Receive Care</h1>
-        <div className='flex flex-col items-center mt-5'>
+        <div className='flex flex-col items-center mt-2 lg:mt-5 lg:flex lg:flex-col lg:items-center'>
           <span>Lorem ipllo dignissimos in libero eum?Lorem ipsum dolor sit amet.</span>
           <span>Lorem ipllo dignissimos in libero eum? Lorem ipsum dolor sit ametipisicing elit. Fugiat, recusandae.</span>
         </div>
@@ -83,14 +66,16 @@ export default function Home() {
 
 
       {/* doctor cover photo */}
-      <div className="relative overflow-hidden mx-50 mt-15">
-        <img src={doctorphoto} alt="image" className="w-full h-full object-cover" />
-        <img src={appointmentCover} alt="image" className="absolute inset-0 w-full h-full object-cover " />
+      <div className='mx-auto mt-15 max-w-7xl lg:px-8'>
+        <div className="relative overflow-hidden ">
+          <img src={doctorphoto} alt="image" className="w-full h-full object-cover" />
+          <img src={appointmentCover} alt="image" className="absolute inset-0 w-full h-full object-cover " />
+        </div>
       </div>
 
 
       {/* our services  */}
-      <div className='mx-50'>
+      <div className='mx-auto px-5 mt-15 max-w-7xl lg:px-8'>
         <div className=" mt-20 flex flex-col gap-x-5 justify-center items-center">
           <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">care you can belive in </h2>
           <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">Our services</h1>
@@ -98,11 +83,11 @@ export default function Home() {
 
 
         {/* grid section  */}
-        <div className='grid grid-cols-6 space-x-5 mt-15'>
+        <div className='lg:grid lg:grid-cols-6 lg:space-x-5 mt-15 mx-auto'>
 
           {/* service part  */}
-          <div className='relative border-2 border-gray-200 rounded-sm'>
-            {service.services?.map((serviceItem, index) => (
+          <div className='grid grid-cols-2 lg:flex lg:flex-col relative border-2 border-gray-200 rounded-sm'>
+            {service?.services?.map((serviceItem, index) => (
               <div className="flex flex-col space-y-2 justify-center items-center cursor-pointer  h-30 hover:bg-[#253477] hover:text-gray-200 hover:rounded-sm" key={index} onClick={() => nav(`/service/${serviceItem._id}`)}>
                 <HeartPulse />
                 <h1 className="font-serif" >{serviceItem.name}</h1>
@@ -114,7 +99,7 @@ export default function Home() {
           </div>
 
           {/* content part  */}
-          <div className='col-span-3'>
+          <div className='hidden lg:grid lg:col-span-3'>
             <div className='flex flex-col space-y-4 mt-10'>
               <h1 className='font-serif font-bold text-2xl'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, nam.</h1>
 
@@ -145,8 +130,11 @@ export default function Home() {
 
 
           {/* picture part  */}
-          <div className='bg-amber-800 col-span-2'>
-            third column
+          <div className='hidden lg:grid lg:col-span-2'>
+            <div className='flex flex-col space-y-5'>
+              <img src={serviceimg1} alt="img1" />
+              <img src={serviceimg2} alt="img2" />
+            </div>
           </div>
         </div>
 
@@ -155,13 +143,13 @@ export default function Home() {
 
 
       {/* our specialist  */}
-      <div className="mx-50">
+      <div className="mx-auto px-5 mt-15 max-w-7xl lg:px-8">
         <div className=" mt-25 flex flex-col gap-x-5 justify-center items-center">
           <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Always caring </h2>
           <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">Our Specialties</h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-20">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-20">
 
           {data.doctors?.map((doctor, index) => (
             <div className="flex flex-col space-y-2 justify-center items-center cursor-pointer border-2 border-gray-100 h-50 hover:bg-[#253477] hover:text-gray-200 hover:rounded-sm" key={index}>
@@ -178,23 +166,24 @@ export default function Home() {
 
 
       {/* appointment form  */}
-      <div className="mt-15">
-        <section className="relative min-h-200 overflow-hidden">
+      <div className="relative mx-auto mt-15">
+        <section className="relative min-h-170 overflow-hidden">
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${homeApp})` }}></div>
           <div className="absolute inset-0 bg-cover bg-center bg-white opacity-80"></div>
 
 
 
+          <div className='mx-auto px-5 mt-15 max-w-7xl lg:px-8'>
+            <div className="absolute grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-4 items-center ">
 
-          <div className="absolute grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-30 items-center w-full h-fit px-50">
+              <div className="flex flex-col space-y-3">
+                <h1 className="text-[#159EEC] text-4xl font-bold font-serif">Book an Appointment</h1>
+                <p className="font-serif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente placeat recusandae architecto impedit culpa, explicabo illo dolore! Ratione officia repellat id facere, tempora alias, distinctio odio numquam nemo perferendis ipsa aperiam, facilis vitae. Blanditiis, debitis saepe. Dolor facilis magnam consequatur quisquam, eaque dolorum ut officia corporis aspernatur unde dolore! Magnam.</p>
+              </div>
 
-            <div className="flex flex-col space-y-3">
-              <h1 className="text-[#159EEC] text-4xl font-bold font-serif">Book an Appointment</h1>
-              <p className="font-serif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente placeat recusandae architecto impedit culpa, explicabo illo dolore! Ratione officia repellat id facere, tempora alias, distinctio odio numquam nemo perferendis ipsa aperiam, facilis vitae. Blanditiis, debitis saepe. Dolor facilis magnam consequatur quisquam, eaque dolorum ut officia corporis aspernatur unde dolore! Magnam.</p>
+
+              <AppointmentForm />
             </div>
-
-
-            <AppointmentForm />
 
 
           </div>
@@ -205,11 +194,13 @@ export default function Home() {
 
 
       {/* common doctor section  */}
-      <div className=" mt-20 flex flex-col gap-x-5 justify-center items-center">
-        <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">trusted care </h2>
-        <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">Our Doctors</h1>
+      <div className='mx-auto px-5 mt-20 max-w-7xl lg:px-8'>
+        <div className="flex flex-col gap-x-5 justify-center items-center">
+          <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">trusted care </h2>
+          <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">Our Doctors</h1>
+        </div>
+        <CommonDoctor />
       </div>
-      <CommonDoctor />
 
 
       {/* common news section  */}

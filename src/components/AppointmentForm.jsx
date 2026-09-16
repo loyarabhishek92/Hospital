@@ -32,7 +32,7 @@ export default function AppointmentForm() {
     if (error) return <h1>{error.doctorData}</h1>
 
     return (
-        <div className="bg-[#202f72] rounded-md mt-10">
+        <div className="bg-[#202f72] rounded-md mt-10 ">
 
 
             <Formik

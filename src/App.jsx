@@ -27,6 +27,7 @@ import Appointment from "./pages/appointment/Appointment.jsx";
 import NewsDetails from "./pages/news/NewsDetails.jsx";
 import DoctorDetails from "./pages/doctors/DoctorDetails.jsx";
 import ServiceDetails from "./pages/services/ServiceDetails.jsx";
+import Try from "./components/Try.jsx";
 
 
 
@@ -137,6 +138,10 @@ export default function App() {
         {
           path: 'admincontact',
           element: <ContactProfile />
+        },
+        {
+          path: '/try',
+          element: <Try />
         },
         {
           path: '*',
