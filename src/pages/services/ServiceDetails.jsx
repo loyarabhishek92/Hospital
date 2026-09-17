@@ -33,7 +33,7 @@ export default function ServiceDetails() {
 
 
                 {/* Hero Content */}
-                <div className="relative flex min-h-70 items-center px-50">
+                <div className="relative flex min-h-70 items-center mx-auto max-w-7xl px-5 lg:px-8">
 
                     <div className="w-full text-[#202f72]">
 
@@ -59,9 +59,9 @@ export default function ServiceDetails() {
 
 
             {/* service section  */}
-            <div className="mx-50 grid grid-cols-4 space-x-5 mt-15 h-full">
+            <div className=" lg:grid lg:grid-cols-4 lg:space-x-5 mt-15 h-full mx-auto max-w-7xl px-5 lg:px-8">
 
-                <div className="border-2 border-grey-500 rounded-sm h-fit">
+                <div className="border-2 border-grey-500 rounded-sm h-fit hidden lg:grid">
 
 
                     <div className="flex flex-col w-full">
@@ -76,7 +76,8 @@ export default function ServiceDetails() {
                         ))}
                     </div>
                 </div>
-                <div className="flex flex-col col-span-3 space-y-4">
+
+                <div className="lg:flex lg:flex-col  lg:col-span-3 space-y-4">
                     <img src={`${base}/${service.image}`} alt="image" />
                     <p>{service.description}</p>
                 </div>
@@ -88,7 +89,7 @@ export default function ServiceDetails() {
 
 
             {/* common doctor section  */}
-            <div className=" mt-20 flex flex-col gap-x-5 justify-center items-center">
+            <div className=" mt-20 flex flex-col gap-x-5 justify-center items-center mx-auto max-w-7xl px-5 lg:px-8">
                 <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">meet the </h2>
                 <h1 className="text-3xl font-serif font-bold tracking-wider">Team Members</h1>
             </div>

@@ -32,7 +32,7 @@ export default function NewsDetails() {
 
 
                 {/* Hero Content */}
-                <div className="relative flex min-h-70 items-center px-50">
+                <div className="relative flex min-h-70 items-center mx-auto max-w-7xl px-5 lg:px-8">
 
                     <div className="w-full text-[#202f72]">
 
@@ -51,7 +51,7 @@ export default function NewsDetails() {
                         <h1 className="font-serif text-5xl font-bold text-[#202f72]">{singleNews.title}</h1>
 
 
-                        <div className="flex space-x-5 mt-2">
+                        <div className="flex space-x-5 mt-2 flex-wrap">
                             <div className="flex space-x-2">
                                 <Calendar />
                                 <span>{singleNews.date}</span>
@@ -80,7 +80,7 @@ export default function NewsDetails() {
 
 
             {/* news section  */}
-            <div className="mx-50 grid grid-cols-3 space-x-5 mt-15">
+            <div className=" grid grid-cols-1 lg:grid-cols-3 space-x-5 space-y-10 mt-15 mx-auto max-w-7xl px-5 lg:px-8">
                 <div className="flex flex-col col-span-2 space-y-4">
                     <img src={`${base}/${singleNews.image}`} alt="image" />
                     <p>{singleNews.description}</p>

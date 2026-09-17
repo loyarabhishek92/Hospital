@@ -18,7 +18,7 @@ export default function Doctor() {
 
 
         {/* Hero Content */}
-        <div className="relative flex min-h-70 items-center px-50">
+        <div className="relative flex min-h-70 items-center mx-auto max-w-7xl px-5 lg:px-8">
 
           <div className="w-full text-[#202f72]">
 

@@ -26,7 +26,7 @@ export default function Service() {
 
 
         {/* Hero Content */}
-        <div className="relative flex min-h-70 items-center px-50">
+        <div className="relative flex min-h-70 items-center mx-auto max-w-7xl px-5 lg:px-8">
 
           <div className="w-full text-[#202f72]">
 
@@ -52,7 +52,7 @@ export default function Service() {
 
 
        {/* services section  */}
-            <div className='mx-50 mt-15 grid grid-cols-3 gap-6'>
+            <div className=' mt-15 grid grid-cols-1 lg:grid-cols-3 gap-6 mx-auto max-w-7xl px-5 lg:px-8'>
               {data.services?.map((service, index) => (
                 <div key={index} className='rounded-sm border-2 border-gray-200'>
                   <img src={`${base}/${service.image}`} alt="image" className='rounded-t-sm object-cover h-80 w-full' />

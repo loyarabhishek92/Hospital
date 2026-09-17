@@ -37,15 +37,123 @@ export default function Home() {
         <img src={h4} alt="image" className="absolute inset-0 w-full h-full object-cover " />
         <img src={h5} alt="image" className="absolute inset-0 w-full h-full object-cover " />
 
-        <div className='absolute inset-0 w-full h-full mx-50 flex flex-col justify-center space-y-3'>
+        {/* main container  */}
+        <div className='absolute inset-0 w-full h-full flex flex-col justify-center items-center lg:items-start space-y-1 lg:space-y-3 mx-auto max-w-7xl px-5 lg:px-8'>
           <h2 className="uppercase text-blue-400 text-xl tracking-wider font-medium ">caring for life</h2>
-          <h1 className="text-5xl font-serif font-bold tracking-wider text-[#253477]">Leading the Way <br /> in Medical Excellence </h1>
+          <h1 className="text-3xl lg:text-5xl font-serif font-bold tracking-wider text-[#253477]">Leading the Way <br /> in Medical Excellence </h1>
 
-          <Button className="text-black mt-10 w-fit px-10 py-6 rounded-full" onClick={() => nav('/service')}>Our Services</Button>
+          <Button className="text-black mt-5 lg:mt-10 w-fit px-10 py-6 rounded-full" onClick={() => nav('/service')}>Our Services</Button>
         </div>
 
 
+        {/* BOTTOM CARDS */}
+        <div
+          className="
+          lg:absolute bottom-0 left-1/2 z-20 lg:grid w-full max-w-[1240px] -translate-x-1/2 grid-cols-1 gap-4 px-6 hidden md:grid-cols-3 lg:px-0"
+        >
+
+          {/* CARD 1 */}
+          <div
+            className="
+            flex
+            min-h-[140px]
+            items-center
+            justify-between
+            rounded-t-lg
+            bg-[#27347c]
+            px-7
+            py-6
+            text-white
+            shadow-lg
+            transition
+            hover:-translate-y-2
+          "
+          >
+            <div>
+              <h3 className="text-lg font-semibold">
+                Book an Appointment
+              </h3>
+
+              <p className="mt-2 text-sm text-white/80">
+                Schedule your visit with our doctors.
+              </p>
+            </div>
+
+            <div className="text-4xl">
+              📅
+            </div>
+          </div>
+
+          {/* CARD 2 */}
+          <div
+            className="
+            flex
+            min-h-[140px]
+            items-center
+            justify-between
+            rounded-t-lg
+            bg-[#b9d0ff]
+            px-7
+            py-6
+            text-[#263575]
+            shadow-lg
+            transition
+            hover:-translate-y-2
+          "
+          >
+            <div>
+              <h3 className="text-lg font-semibold">
+                Find a Doctor
+              </h3>
+
+              <p className="mt-2 text-sm">
+                Find experienced medical specialists.
+              </p>
+            </div>
+
+            <div className="text-4xl">
+              👨‍⚕️
+            </div>
+          </div>
+
+          {/* CARD 3 */}
+          <div
+            className="
+            flex
+            min-h-[140px]
+            items-center
+            justify-between
+            rounded-t-lg
+            bg-[#159fe3]
+            px-7
+            py-6
+            text-white
+            shadow-lg
+            transition
+            hover:-translate-y-2
+          "
+          >
+            <div>
+              <h3 className="text-lg font-semibold">
+                Emergency Care
+              </h3>
+
+              <p className="mt-2 text-sm text-white/90">
+                24/7 emergency medical assistance.
+              </p>
+            </div>
+
+            <div className="text-4xl">
+              🏥
+            </div>
+          </div>
+
+        </div>
+
       </section>
+
+
+
 
       {/* about section  */}
       <div className='mx-auto px-5  mt-15 flex flex-col items-center justify-center space-y-2 lg:px-8 lg:flex lg:flex-col lg:items-center lg:justify-center lg:space-y-1'>
@@ -166,24 +274,26 @@ export default function Home() {
 
 
       {/* appointment form  */}
-      <div className="relative mx-auto mt-15">
-        <section className="relative min-h-170 overflow-hidden">
+      <div>
+        <section className="relative min-h-screen overflow-scroll">
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${homeApp})` }}></div>
           <div className="absolute inset-0 bg-cover bg-center bg-white opacity-80"></div>
 
 
 
-          <div className='mx-auto px-5 mt-15 max-w-7xl lg:px-8'>
-            <div className="absolute grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-4 items-center ">
 
-              <div className="flex flex-col space-y-3">
+
+          <div className="absolute mx-auto px-5 w-full h-full lg:px-36  flex items-center">
+            <div className='grid grid-cols-1 lg:grid-cols-2 space-y-14 lg:space-x-32 '>
+              <div className="flex flex-col justify-center items-center lg:items-start space-y-3 mt-15">
                 <h1 className="text-[#159EEC] text-4xl font-bold font-serif">Book an Appointment</h1>
                 <p className="font-serif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente placeat recusandae architecto impedit culpa, explicabo illo dolore! Ratione officia repellat id facere, tempora alias, distinctio odio numquam nemo perferendis ipsa aperiam, facilis vitae. Blanditiis, debitis saepe. Dolor facilis magnam consequatur quisquam, eaque dolorum ut officia corporis aspernatur unde dolore! Magnam.</p>
               </div>
 
-
               <AppointmentForm />
+
             </div>
+
 
 
           </div>

@@ -71,12 +71,12 @@ export default function DropDownMenu({ user }) {
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="rounded-full">
                         <Avatar>
-                            <AvatarImage src={`${base}/${user.image}`} alt={user.fallback} />
+                            <AvatarImage src={`${base}/${user.image}`} alt={user.fallback}/>
                             <AvatarFallback>LF</AvatarFallback>
                         </Avatar>
                     </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className='absolute mt-5'>
+                <DropdownMenuContent align="end" className='relative mt-5'>
                     <DropdownMenuGroup>
                         {litsItems.map((item, index) => (
                             <DropdownMenuItem

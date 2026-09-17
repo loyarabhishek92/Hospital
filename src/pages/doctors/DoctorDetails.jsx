@@ -63,7 +63,7 @@ export default function DoctorDetails() {
 
 
         {/* Hero Content */}
-        <div className="relative flex min-h-70 items-center px-50">
+        <div className="relative flex min-h-70 items-center mx-auto max-w-7xl px-5 lg:px-8">
 
           <div className="w-full text-[#202f72]">
 
@@ -94,7 +94,7 @@ export default function DoctorDetails() {
 
 
 
-      <div className="mx-50 py-5">
+      <div className=" py-5 mx-auto max-w-7xl px-5 lg:px-8">
 
 
         <Card className="grid md:grid-cols-2 gap-6">

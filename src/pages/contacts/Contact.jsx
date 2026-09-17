@@ -16,7 +16,7 @@ export default function Contact() {
 
 
         {/* Hero Content */}
-        <div className="relative flex min-h-70 items-center px-50">
+        <div className="relative flex min-h-70 items-center mx-auto max-w-7xl px-5 lg:px-8">
 
           <div className="w-full text-[#202f72]">
 
@@ -36,16 +36,19 @@ export default function Contact() {
       </section>
 
       {/* google map  */}
-      <div className="mx-50 mt-15">
+      <div className=" mt-15 mx-auto max-w-7xl px-5 lg:px-8">
         <GoogleMap />
       </div>
 
 
       {/* contact form and media  */}
-      <div className="px-50 grid grid-cols-2 gap-x-10 pt-15">
+      <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10 pt-15 mx-auto max-w-7xl px-5 lg:px-8">
         <div className="flex flex-col gap-x-5">
+          <div className="flex flex-col gap-x-5 items-center lg:items-start">
+
           <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Get in touch</h2>
           <h1 className="text-3xl font-serif font-bold tracking-wider">Contact</h1>
+          </div>
 
 
 

@@ -24,7 +24,7 @@ export default function News() {
 
 
         {/* Hero Content */}
-        <div className="relative flex min-h-70 items-center px-50">
+        <div className="relative flex min-h-70 items-center mx-auto max-w-7xl px-5 lg:px-8">
 
           <div className="w-full text-[#202f72]">
 
@@ -47,7 +47,7 @@ export default function News() {
 
 
       {/* news section  */}
-      <div className="mx-50 grid grid-cols-3 space-x-5 mt-15">
+      <div className=" grid grid-cols-1 lg:grid-cols-3 space-x-5 mt-15 mx-auto max-w-7xl px-5 lg:px-8">
 
         <div className="flex flex-col col-span-2 space-y-10">
           {data.news?.map((newsItem, index) => (
@@ -89,7 +89,7 @@ export default function News() {
 
 
         {/* Recent News  */}
-        <div>
+        <div className='grid shrink-0 mt-10'>
           <RecentNews />
         </div>
 

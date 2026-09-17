@@ -32,7 +32,7 @@ export default function AppointmentForm() {
     if (error) return <h1>{error.doctorData}</h1>
 
     return (
-        <div className="bg-[#202f72] rounded-md mt-10 ">
+        <div className="bg-[#202f72] rounded-md">
 
 
             <Formik
@@ -85,7 +85,7 @@ export default function AppointmentForm() {
                 {({ handleChange, handleSubmit, values, errors, touched, setFieldValue, handleBlur }) => (
                     <form
                         onSubmit={handleSubmit}
-                        className="w-full max-w-3xl overflow-hidden rounded-lg bg-[#253477] shadow-lg"
+                        className="w-full max-w-7xl overflow-hidden rounded-lg bg-[#253477] shadow-lg"
                     >
                         {/* FORM GRID */}
 
