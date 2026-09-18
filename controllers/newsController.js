@@ -84,18 +84,25 @@ export const getNews = async (req, res) => {
 
 
 
-        // const page = Number(req.query.page) || 1;
-        // const limit = Number(req.query.limit) || 2;
-        // const skip = (page - 1) * limit;
+        const page = Number(req.query.page) || 1;
+        const limit = Number(req.query.limit) || 4;
+        const skip = (page - 1) * limit;
 
 
 
-        const news = await query;
-        // const total = await Product.countDocuments({});
-        // const pages = Math.ceil(total / limit); 
+        const news = await query.skip(skip).limit(limit);
+        const newsForAdmin = await News.find({});
+        const total = await News.countDocuments({});
+        const pages = Math.ceil(total / limit); 
 
-        // const products = await Product.find({});
-        return res.status(200).json({ news });
+
+        return res.status(200).json({ 
+            success: true,
+            totalPages: pages,
+            totalData: newsForAdmin.length,
+            news,
+            newsForAdmin 
+        });
     } catch (err) {
         return res.status(400).json({
             message: err.message
