@@ -1,20 +1,46 @@
+import React from 'react';
 import news from '@/assets/images/news.png';
 import appointmentCover from '@/assets/images/appointmentCover.png';
 import Footer from '@/components/Footer.jsx';
 import { base } from '@/app/mainApi.js';
 import { useGetNewsQuery } from '@/features/admin/add/news/newsApi.js';
 import RecentNews from '@/components/RecentNews.jsx';
-import { ArrowRight, Calendar, Eye, Heart, User } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Calendar, Eye, Heart, User } from 'lucide-react';
 import { Button } from '@/components/ui/button.jsx';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import ContactContainer from '@/components/ContactContainer.jsx';
+import { useEffect } from 'react';
+import { cn } from '@/lib/utils.js';
 
 export default function News() {
-  const { data, isLoading, error } = useGetNewsQuery();
   const nav = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get("page")) || 1;
+  const { data, isLoading, error } = useGetNewsQuery({ page });
+  // Generate page numbers array [1, 2, 3, 4, 5]
+  const pageNumbers = Array.from({ length: data?.totalPages }, (_, i) => i + 1);
+
+  // 3. Function to update the URL
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= data?.totalPages) {
+      // Update the 'page' param in the URL
+      setSearchParams({ page: page.toString() });
+
+      // Optional: Scroll to top of news list on change
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // useEffect(() => {
+      //   window.scrollTo({ top: 0, behavior: 'smooth' });
+      // }, [page]);
+    }
+  };
+
+
+
+
 
   if (isLoading) return <h1>Loading</h1>
-  if (error) return <h1>{error.data}</h1>
+  if (error) return <h1>{error.data.message}</h1>
+  console.log(data);
   return (
     <div>
       <section className="relative min-h-70 overflow-hidden">
@@ -80,16 +106,86 @@ export default function News() {
               <h1 className="font-serif text-3xl  text-[#202f72]">{newsItem.title}</h1>
               <p className='mt-3 line-clamp-4'>{newsItem.description}</p>
 
-               <Button className="text-black w-fit p-6 rounded-full mt-3" onClick={() => nav(`/news/${newsItem._id}`)}>Read More <ArrowRight /></Button>
+              <Button className="text-black w-fit p-6 rounded-full mt-3" onClick={() => nav(`/news/${newsItem._id}`)}>Read More <ArrowRight /></Button>
             </div>
           ))}
+
+
+
+
+
+
+          {(data?.totalPages > 1) && <div className="flex items-center justify-between w-full py-4 px-2 select-none">
+
+            {/* --- PREVIOUS BUTTON --- */}
+            <button
+              onClick={() => handlePageChange(page - 1)}
+              disabled={page === 1}
+              className={cn(
+                "flex items-center gap-2 text-lg transition-colors duration-200 font-medium",
+                page === 1
+                  ? "text-gray-300 cursor-not-allowed" // Faded state
+                  : "text-gray-500 hover:text-blue-600 cursor-pointer"
+              )}
+            >
+              <ArrowLeft className="w-5 h-5" />
+              <span>Previous Page</span>
+            </button>
+
+            {/* --- PAGE NUMBERS --- */}
+            <div className="hidden md:flex items-center gap-1">
+              {pageNumbers.map((number, index) => (
+                <div key={number}>
+                  {/* The Number */}
+                  <button
+                    onClick={() => handlePageChange(number)}
+                    className={cn(
+                      "text-lg font-medium transition-colors duration-200 px-1",
+                      page === number
+                        ? "text-blue-600 font-bold" // Active state (Blue)
+                        : "text-gray-600 hover:text-blue-400" // Inactive state (Dark Grey)
+                    )}
+                  >
+                    {number}
+                  </button>
+
+                  {/* The Separator (Hyphen) - Only show if not the last item */}
+                  {index < pageNumbers.length - 1 && (
+                    <span className="text-gray-400 mx-1">-</span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile View: Just "Page 1 of 5" */}
+            <div className="md:hidden text-gray-600 font-medium">
+              Page {page} of {data?.totalPages}
+            </div>
+
+            {/* --- NEXT BUTTON --- */}
+            <button
+              onClick={() => handlePageChange(page + 1)}
+              disabled={page === data?.totalPages}
+              className={cn(
+                "flex items-center gap-2 text-lg transition-colors duration-200 font-medium",
+                page === data?.totalPages
+                  ? "text-gray-300 cursor-not-allowed"
+                  : "text-blue-600 hover:text-blue-800 cursor-pointer" // Active blue
+              )}
+            >
+              <span>Next Page</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>}
+
+
         </div>
 
 
 
 
         {/* Recent News  */}
-        <div className='grid shrink-0 mt-10'>
+        <div className='grid shrink-0 mt-10 lg:mt-0'>
           <RecentNews />
         </div>
 
@@ -105,6 +201,6 @@ export default function News() {
         <Footer />
       </div>
 
-    </div>
+    </div >
   )
 }

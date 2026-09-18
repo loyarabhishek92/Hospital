@@ -62,7 +62,7 @@ export default function RecentNews() {
                     <h1 className="text-4xl font-serif font-bold tracking-wider text-[#253477]">Recent Posts</h1>
 
                     <div className="flex flex-col gap-y-3 ">
-                        {data.news?.map((NewsItem) => (
+                        {data.newsForAdmin?.map((NewsItem) => (
                             <div className="flex gap-x-3.5 cursor-pointer overflow-hidden rounded-sm shadow-md hover:shadow-xl transition duration-300 group bg-gray-50" key={NewsItem._id} onClick={() => nav(`/news/${NewsItem._id}`)}>
                                 <div className="h-15 w-15 overflow-hidden rounded-sm">
                                     <img src={`${base}/${NewsItem.image}`} alt="image" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />

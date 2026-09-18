@@ -33,7 +33,7 @@ export default function NewsProfile() {
                 <TableBody>
 
 
-                    {data.news?.map(item => (
+                    {data.newsForAdmin?.map(item => (
                         <TableRow key={item._id}>
                             <TableCell>
                                 <div className="flex items-center gap-3">

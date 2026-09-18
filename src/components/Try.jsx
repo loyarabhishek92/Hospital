@@ -1,195 +1,94 @@
-import doctorimage from '@/assets/images/hero.png';
-import { CalendarDays, CreditCard, Stethoscope } from 'lucide-react';
+
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils'; // Shadcn utility
 
 
-export default function Try() {
-    
-    return (
-      <section
-      className="relative min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(${doctorimage})`,
-      }}
-    >
-      {/* Light overlay over background image */}
-      <div className="absolute inset-0 bg-white/55"></div>
+export default function Try({ totalPages = 5 }) {
 
-      {/* Top-left decorative circle */}
-      <div className="absolute -left-40 -top-44 h-[400px] w-[600px] rounded-full bg-[#a9d5ee]/90"></div>
+  // 1. Hook into the URL search params
+  const [searchParams, setSearchParams] = useSearchParams();
 
-      {/* Right decorative circle */}
-      <div className="absolute -right-40 top-[245px] h-[400px] w-[650px] rounded-full bg-[#d4e0ff]/70"></div>
+  // 2. Get the current page from URL, default to 1 if not present
+  const currentPage = Number(searchParams.get('page')) || 1;
 
-      {/* HERO CONTENT */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1240px] items-center px-6 sm:px-8 lg:px-0">
+  // Generate page numbers array [1, 2, 3, 4, 5]
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-        {/* LEFT TEXT */}
-        <div className="w-full max-w-[700px] pb-32 pt-24 lg:pb-20">
+  // 3. Function to update the URL
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      // Update the 'page' param in the URL
+      setSearchParams({ page: page.toString() });
 
-          {/* Small title */}
-          <p className="mb-5 text-sm font-bold tracking-[0.3em] text-[#149fe3] sm:text-base md:text-lg">
-            CARING FOR LIFE
-          </p>
+      // Optional: Scroll to top of news list on change
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
-          {/* Main heading */}
-          <h1
-            className="
-              max-w-[650px]
-              font-serif
-              text-[42px]
-              font-bold
-              leading-[1.08]
-              text-[#263575]
-              sm:text-[50px]
-              md:text-[58px]
-              lg:text-[62px]
-          "
-          >
-            Leading the Way
-            <br />
-            in Medical Excellence
-          </h1>
+  return (
+    <div className="flex items-center justify-between w-full py-4 px-2 select-none">
 
-          {/* Button */}
-          <button
-            className="
-              mt-8
-              rounded-full
-              bg-[#bfd3fa]
-              px-10
-              py-4
-              text-base
-              font-medium
-              text-[#263575]
-              transition
-              duration-300
-              hover:bg-[#a9c4f5]
-              hover:shadow-lg
-              active:scale-95
-          "
-          >
-            Our Services
-          </button>
-        </div>
-      </div>
-
-      {/* BOTTOM CARDS */}
-      <div
-        className="
-          absolute
-          bottom-0
-          left-1/2
-          z-20
-          grid
-          w-full
-          max-w-[1240px]
-          -translate-x-1/2
-          grid-cols-1
-          gap-4
-          px-6
-          sm:px-8
-          md:grid-cols-3
-          lg:px-0
-      "
+      {/* --- PREVIOUS BUTTON --- */}
+      <button
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className={cn(
+          "flex items-center gap-2 text-lg transition-colors duration-200 font-medium",
+          currentPage === 1
+            ? "text-gray-300 cursor-not-allowed" // Faded state
+            : "text-gray-500 hover:text-blue-600 cursor-pointer"
+        )}
       >
+        <ArrowLeft className="w-5 h-5" />
+        <span>Previous Page</span>
+      </button>
 
-        {/* CARD 1 */}
-        <div
-          className="
-            flex
-            min-h-[140px]
-            items-center
-            justify-between
-            rounded-t-lg
-            bg-[#27347c]
-            px-7
-            py-6
-            text-white
-            shadow-lg
-            transition
-            hover:-translate-y-2
-          "
-        >
-          <div>
-            <h3 className="text-lg font-semibold">
-              Book an Appointment
-            </h3>
+      {/* --- PAGE NUMBERS --- */}
+      <div className="hidden md:flex items-center gap-1">
+        {pageNumbers.map((number, index) => (
+          <React.Fragment key={number}>
+            {/* The Number */}
+            <button
+              onClick={() => handlePageChange(number)}
+              className={cn(
+                "text-lg font-medium transition-colors duration-200 px-1",
+                currentPage === number
+                  ? "text-blue-600 font-bold" // Active state (Blue)
+                  : "text-gray-600 hover:text-blue-400" // Inactive state (Dark Grey)
+              )}
+            >
+              {number}
+            </button>
 
-            <p className="mt-2 text-sm text-white/80">
-              Schedule your visit with our doctors.
-            </p>
-          </div>
-
-          <div className="text-4xl">
-            📅
-          </div>
-        </div>
-
-        {/* CARD 2 */}
-        <div
-          className="
-            flex
-            min-h-[140px]
-            items-center
-            justify-between
-            rounded-t-lg
-            bg-[#b9d0ff]
-            px-7
-            py-6
-            text-[#263575]
-            shadow-lg
-            transition
-            hover:-translate-y-2
-          "
-        >
-          <div>
-            <h3 className="text-lg font-semibold">
-              Find a Doctor
-            </h3>
-
-            <p className="mt-2 text-sm">
-              Find experienced medical specialists.
-            </p>
-          </div>
-
-          <div className="text-4xl">
-            👨‍⚕️
-          </div>
-        </div>
-
-        {/* CARD 3 */}
-        <div
-          className="
-            flex
-            min-h-[140px]
-            items-center
-            justify-between
-            rounded-t-lg
-            bg-[#159fe3]
-            px-7
-            py-6
-            text-white
-            shadow-lg
-            transition
-            hover:-translate-y-2
-          "
-        >
-          <div>
-            <h3 className="text-lg font-semibold">
-              Emergency Care
-            </h3>
-
-            <p className="mt-2 text-sm text-white/90">
-              24/7 emergency medical assistance.
-            </p>
-          </div>
-
-          <div className="text-4xl">
-            🏥
-          </div>
-        </div>
-
+            {/* The Separator (Hyphen) - Only show if not the last item */}
+            {index < pageNumbers.length - 1 && (
+              <span className="text-gray-400 mx-1">-</span>
+            )}
+          </React.Fragment>
+        ))}
       </div>
-    </section>
-    )
+
+      {/* Mobile View: Just "Page 1 of 5" */}
+      <div className="md:hidden text-gray-600 font-medium">
+        Page {currentPage} of {totalPages}
+      </div>
+
+      {/* --- NEXT BUTTON --- */}
+      <button
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className={cn(
+          "flex items-center gap-2 text-lg transition-colors duration-200 font-medium",
+          currentPage === totalPages
+            ? "text-gray-300 cursor-not-allowed"
+            : "text-blue-600 hover:text-blue-800 cursor-pointer" // Active blue
+        )}
+      >
+        <span>Next Page</span>
+        <ArrowRight className="w-5 h-5" />
+      </button>
+    </div>
+  )
 }

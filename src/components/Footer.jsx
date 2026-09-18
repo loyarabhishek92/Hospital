@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Input } from "./ui/input.jsx";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 
 
@@ -47,10 +48,39 @@ export default function Footer() {
 
       <div className="flex justify-between pb-10 lg:pb-20 pt-5 lg:pt-10 mx-auto px-5 mt-10 lg:mt-20 max-w-7xl lg:px-8">
         <h2>&copy; 2026 Gupta Care pvt.ltd All Rights Reserved by DevMERNyar.Coder</h2>
-        <div className="flex">
-          <div><a href="">linkedin icon</a></div>
-          <div><a href="">facebook icon</a></div>
-          <div><a href="">insta icon</a></div>
+
+        {/* social media icon  */}
+        <div className="flex items-center gap-3">
+          {/* LinkedIn */}
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-7 w-7 items-center justify-center rounded-full bg-[#BFD2F8] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#8dabe7]"
+          >
+            <FaLinkedinIn size={15} className="text-[#1F2B6C]" />
+          </a>
+
+          {/* Facebook */}
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-7 w-7 items-center justify-center rounded-full bg-[#BFD2F8] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#8dabe7]"
+          >
+            <FaFacebookF size={15} className="text-[#1F2B6C]" />
+          </a>
+
+          {/* Instagram */}
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-7 w-7 items-center justify-center rounded-full bg-[#BFD2F8] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#8dabe7]"
+          >
+            <FaInstagram size={15} className="text-[#1F2B6C]" />
+          </a>
+
         </div>
 
       </div>
