@@ -1,94 +1,137 @@
+import { useGetNewsQuery } from "@/features/admin/add/news/newsApi.js";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel.jsx";
+import NewsCard from "./NewsCard.jsx";
+import { useState } from "react";
 
-import React from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils'; // Shadcn utility
 
 
-export default function Try({ totalPages = 5 }) {
 
-  // 1. Hook into the URL search params
-  const [searchParams, setSearchParams] = useSearchParams();
 
-  // 2. Get the current page from URL, default to 1 if not present
-  const currentPage = Number(searchParams.get('page')) || 1;
+export default function Try() {
 
-  // Generate page numbers array [1, 2, 3, 4, 5]
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const [api, setApi] = useState(null);
+  const [current, setCurrent] = useState(0);
 
-  // 3. Function to update the URL
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      // Update the 'page' param in the URL
-      setSearchParams({ page: page.toString() });
+  const {
+    data,
+    isLoading,
+    isError,
+  } = useGetNewsQuery();
 
-      // Optional: Scroll to top of news list on change
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  if (isLoading) {
+    return (
+      <section className="py-20 text-center">
+        Loading news...
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className="py-20 text-center text-red-500">
+        Failed to load news.
+      </section>
+    );
+  }
+
+  const news = data?.newsForAdmin || [];
+
+  /*
+   * Create groups:
+   *
+   * slide 1:
+   * [news1, news2, news3, news4]
+   *
+   * slide 2:
+   * [news5, news6, news7, news8]
+   */
+  const slides = [];
+
+  for (let i = 0; i < news.length; i += 4) {
+    slides.push(news.slice(i, i + 4));
+  }
+
+  const handleApi = (carouselApi) => {
+    setApi(carouselApi);
+
+    setCurrent(carouselApi.selectedScrollSnap());
+
+    carouselApi.on("select", () => {
+      setCurrent(carouselApi.selectedScrollSnap());
+    });
   };
 
+  const goToSlide = (index) => {
+    api?.scrollTo(index);
+  };
+
+
+
+
+
   return (
-    <div className="flex items-center justify-between w-full py-4 px-2 select-none">
+    <section className="bg-[#f8fbfc] px-5 py-16 md:px-10 lg:px-20">
 
-      {/* --- PREVIOUS BUTTON --- */}
-      <button
-        onClick={() => handlePageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className={cn(
-          "flex items-center gap-2 text-lg transition-colors duration-200 font-medium",
-          currentPage === 1
-            ? "text-gray-300 cursor-not-allowed" // Faded state
-            : "text-gray-500 hover:text-blue-600 cursor-pointer"
-        )}
-      >
-        <ArrowLeft className="w-5 h-5" />
-        <span>Previous Page</span>
-      </button>
+      {/* Heading */}
+      <div className="mb-16 text-center">
+        <h2 className="font-serif text-4xl font-semibold text-[#1d2d68]">
+          News
+        </h2>
+      </div>
 
-      {/* --- PAGE NUMBERS --- */}
-      <div className="hidden md:flex items-center gap-1">
-        {pageNumbers.map((number, index) => (
-          <React.Fragment key={number}>
-            {/* The Number */}
-            <button
-              onClick={() => handlePageChange(number)}
-              className={cn(
-                "text-lg font-medium transition-colors duration-200 px-1",
-                currentPage === number
-                  ? "text-blue-600 font-bold" // Active state (Blue)
-                  : "text-gray-600 hover:text-blue-400" // Inactive state (Dark Grey)
-              )}
-            >
-              {number}
-            </button>
+      {/* Carousel */}
+      <div className="mx-auto max-w-[1220px]">
 
-            {/* The Separator (Hyphen) - Only show if not the last item */}
-            {index < pageNumbers.length - 1 && (
-              <span className="text-gray-400 mx-1">-</span>
-            )}
-          </React.Fragment>
+        <Carousel
+          setApi={handleApi}
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
+
+          <CarouselContent>
+
+            {slides.map((slide, index) => (
+              <CarouselItem key={index}>
+
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+
+                  {slide.map((item) => (
+                    <NewsCard
+                      key={item._id}
+                      news={item}
+                    />
+                  ))}
+
+                </div>
+
+              </CarouselItem>
+            ))}
+
+          </CarouselContent>
+
+        </Carousel>
+
+      </div>
+
+      {/* Dots */}
+      <div className="mt-10 flex justify-center gap-3">
+
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`h-3 w-3 rounded-full transition-all duration-200 ${current === index
+                ? "scale-110 bg-[#1d2d68]"
+                : "bg-blue-200"
+              }`}
+            aria-label={`Go to news slide ${index + 1}`}
+          />
         ))}
+
       </div>
 
-      {/* Mobile View: Just "Page 1 of 5" */}
-      <div className="md:hidden text-gray-600 font-medium">
-        Page {currentPage} of {totalPages}
-      </div>
-
-      {/* --- NEXT BUTTON --- */}
-      <button
-        onClick={() => handlePageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className={cn(
-          "flex items-center gap-2 text-lg transition-colors duration-200 font-medium",
-          currentPage === totalPages
-            ? "text-gray-300 cursor-not-allowed"
-            : "text-blue-600 hover:text-blue-800 cursor-pointer" // Active blue
-        )}
-      >
-        <span>Next Page</span>
-        <ArrowRight className="w-5 h-5" />
-      </button>
-    </div>
+    </section>
   )
 }

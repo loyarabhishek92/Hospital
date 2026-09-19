@@ -1,9 +1,12 @@
 import { useGetNewsQuery } from "@/features/admin/add/news/newsApi.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Input } from "./ui/input.jsx";
 import { Button } from "./ui/button.jsx";
 import { Search } from "lucide-react";
 import { base } from "@/app/mainApi.js";
+import { Formik } from "formik";
+
+
 
 const categories = [
     {
@@ -25,20 +28,47 @@ const categories = [
 ];
 
 export default function RecentNews() {
-    const { data, isLoading, error } = useGetNewsQuery();
     const nav = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const search = searchParams.get("search");
+    const { data, isLoading, error } = useGetNewsQuery({
+        search: searchParams.get("search") ?? ''
+    });
 
-    if(isLoading) return <h1>Loading...</h1>
-    if(error) return <h1>{error.data}</h1>
+
+
+    if (isLoading) return <h1>Loading...</h1>
+    if (error) return <h1>{error.data.message}</h1>
+    console.log(data)
 
 
 
     return (
         <div>
             <div className="flex flex-col space-y-7">
-                <div className="relative bg-[#253477] rounded-sm flex items-center justify-center">
-                    <Input placeholder="Search"
-                        className="h-16
+
+                <Formik
+                    initialValues={{
+                        search: ''
+                    }}
+
+                    onSubmit={(val) => {
+                        if (val.search.length > 0) {
+                            setSearchParams({ search: val.search });
+                        }
+                    }}
+                >
+                    {({ handleChange, handleSubmit, values, errors }) => (
+                        <form
+                            onSubmit={handleSubmit}
+                        >
+                            <div className="relative bg-[#253477] rounded-sm flex items-center justify-center">
+                                <Input
+                                    name='search'
+                                    value={values.search}
+                                    onChange={handleChange}
+                                    placeholder="Search"
+                                    className="h-16
                 rounded-none
                 border-0
                 bg-transparent
@@ -47,21 +77,33 @@ export default function RecentNews() {
                 text-white
                 placeholder:text-white
                 focus-visible:ring-0"
-                    />
-                    <Button
-                        type='button'
-                        variant="ghost"
-                        size="icon"
-                        className='text-muted-foreground focus-visible:ring-ring/50 inset-y-0 right-0 rounded-l-none hover:bg-transparent'
-                    >
-                        <Search />
-                    </Button>
-                </div>
+                                />
+                                <Button
+                                    type='submit'
+                                    variant="ghost"
+                                    size="icon"
+                                    className='text-muted-foreground focus-visible:ring-ring/50 inset-y-0 right-0 rounded-l-none hover:bg-transparent'
+                                >
+                                    <Search />
+                                </Button>
+
+                            </div>
+                        </form>
+                    )}
+                </Formik>
+
 
                 <div className="border-2 border-grey-500 flex flex-col space-y-4 py-5 px-3 rounded-sm">
                     <h1 className="text-4xl font-serif font-bold tracking-wider text-[#253477]">Recent Posts</h1>
 
                     <div className="flex flex-col gap-y-3 ">
+                        {data?.newsForAdmin.length === 0 && (
+                            <div className="flex items-center justify-center h-[60vh] text-red-500 text-lg">
+                                No news found.
+                            </div>
+                        )}
+
+
                         {data.newsForAdmin?.map((NewsItem) => (
                             <div className="flex gap-x-3.5 cursor-pointer overflow-hidden rounded-sm shadow-md hover:shadow-xl transition duration-300 group bg-gray-50" key={NewsItem._id} onClick={() => nav(`/news/${NewsItem._id}`)}>
                                 <div className="h-15 w-15 overflow-hidden rounded-sm">

@@ -9,7 +9,7 @@ import { ArrowLeft, ArrowRight, Calendar, Eye, Heart, User } from 'lucide-react'
 import { Button } from '@/components/ui/button.jsx';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ContactContainer from '@/components/ContactContainer.jsx';
-import { useEffect } from 'react';
+
 import { cn } from '@/lib/utils.js';
 
 export default function News() {
@@ -20,6 +20,8 @@ export default function News() {
   // Generate page numbers array [1, 2, 3, 4, 5]
   const pageNumbers = Array.from({ length: data?.totalPages }, (_, i) => i + 1);
 
+  const adminData = data?.newsForAdmin;
+
   // 3. Function to update the URL
   const handlePageChange = (page) => {
     if (page >= 1 && page <= data?.totalPages) {
@@ -27,7 +29,7 @@ export default function News() {
       setSearchParams({ page: page.toString() });
 
       // Optional: Scroll to top of news list on change
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollX({ top: 0, behavior: 'smooth' });
       // useEffect(() => {
       //   window.scrollTo({ top: 0, behavior: 'smooth' });
       // }, [page]);
@@ -40,7 +42,6 @@ export default function News() {
 
   if (isLoading) return <h1>Loading</h1>
   if (error) return <h1>{error.data.message}</h1>
-  console.log(data);
   return (
     <div>
       <section className="relative min-h-70 overflow-hidden">
@@ -186,7 +187,7 @@ export default function News() {
 
         {/* Recent News  */}
         <div className='grid shrink-0 mt-10 lg:mt-0'>
-          <RecentNews />
+          <RecentNews adminData={adminData} />
         </div>
 
 

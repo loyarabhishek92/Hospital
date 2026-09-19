@@ -6,6 +6,7 @@ import { Menu, Search, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import DropDownMenu from "./DropDownMenu.jsx";
 import { useState } from "react";
+import SearchBar from "@/pages/search/SearchBar.jsx";
 
 export default function Header() {
     const [mobileMenu, setMobileMenu] = useState(false);
@@ -95,13 +96,14 @@ export default function Header() {
                     <div className="ml-auto flex items-center gap-5">
 
                         {/* Search */}
-                        <button
+                        <SearchBar />
+                        {/* <button
                             type="button"
                             aria-label="Search"
                             className="text-white transition hover:text-[#8fc9ff]"
                         >
                             <Search size={32} strokeWidth={1.8} />
-                        </button>
+                        </button> */}
 
                         {/* appointment  */}
                         <NavLink to={'/appointment'} className=" hidden h-[60px] min-w-[205px] items-center justify-center rounded-full bg-[#bfd5fa] px-8 text-base font-medium text-gray-900 transition hover:bg-white md:flex" >Appointment</NavLink>
