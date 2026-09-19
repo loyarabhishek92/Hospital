@@ -1,3 +1,4 @@
+
 import News from "../models/News.js";
 import { removeFile } from "../utils/removeFile.js";
 
@@ -61,12 +62,30 @@ export const getNews = async (req, res) => {
 
         // search ko lagi
         if (req.query.search) {
-            const search = req.query.search;
-            if (some((n) => n.toLowerCase().includes(search.toLowerCase()))) {
-                query.find({ title: { $regex: search, $options: 'i' } });
-            } else if(some((n) => n.toLowerCase().includes(search.toLowerCase()))) {
-                query.find({ author: { $regex: search, $options: 'i' } });
-            }
+            const search = req.query.search.trim();
+
+            query.find({
+                $or: [
+                    {
+                        title: {
+                            $regex: search,
+                            $options: 'i',
+                        },
+                    },
+                    {
+                        author: {
+                            $regex: search,
+                            $options: "i",
+                        },
+                    },
+                    {
+                        date: {
+                            $regex: search,
+                            $options: "i",
+                        },
+                    },
+                ],
+            });
         }
 
 
@@ -76,11 +95,11 @@ export const getNews = async (req, res) => {
         //     query = query.sort(sortBy);
         // }
 
-        // //field anusar search garnako lagi
-        // if (req.query.fields) {
-        //     const fields = req.query.fields.split(',').join(' ');
-        //     query = query.select(fields);
-        // }
+        //field anusar search garnako lagi
+        if (req.query.fields) {
+            const fields = req.query.fields.split(',').join(' ');
+            query = query.select(fields);
+        }
 
 
 
@@ -90,18 +109,18 @@ export const getNews = async (req, res) => {
 
 
 
-        const news = await query.skip(skip).limit(limit);
-        const newsForAdmin = await News.find({});
-        const total = await News.countDocuments({});
-        const pages = Math.ceil(total / limit); 
+        const news = (await query.skip(skip).limit(limit));
+        const newsForAdmin = await News.find().sort({ createdAt: -1 }).lean();
+        const total = await News.countDocuments();
+        const pages = Math.ceil(total / limit);
 
 
-        return res.status(200).json({ 
+        return res.status(200).json({
             success: true,
             totalPages: pages,
             totalData: newsForAdmin.length,
             news,
-            newsForAdmin 
+            newsForAdmin
         });
     } catch (err) {
         return res.status(400).json({

@@ -8,7 +8,8 @@ import doctorRoutes from './routes/doctorRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js'
 import newsRoutes from './routes/newsRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';
-import contactRoutes from './routes/contactRoutes.js'
+import contactRoutes from './routes/contactRoutes.js';
+import searchRoutes from './routes/searchRoutes.js';
 
 const app = express();
 const port = 5000;
@@ -51,3 +52,4 @@ app.use('/api/services', serviceRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/appointment', appointmentRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/search', searchRoutes);
