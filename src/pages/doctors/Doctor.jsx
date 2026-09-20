@@ -1,9 +1,9 @@
-import doctor from '@/assets/images/doctor.png'
-import appointmentCover from '@/assets/images/appointmentCover.png'
+import doctor from '@/assets/images/doctor.png';
+import appointmentCover from '@/assets/images/appointmentCover.png';
 import doctorheader from '@/assets/images/doctorheader.png';
-import Footer from '@/components/Footer.jsx'
-import CommonNews from '@/components/CommonNews.jsx'
-import ContactContainer from '@/components/ContactContainer.jsx'
+import Footer from '@/components/Footer.jsx';
+import CommonNews from '@/components/CommonNews.jsx';
+import ContactContainer from '@/components/ContactContainer.jsx';
 import vector from '@/assets/images/vector.png';
 import { useGetDoctorsQuery } from '@/features/admin/add/doctor/doctorApi.js';
 import { useNavigate } from 'react-router-dom';
