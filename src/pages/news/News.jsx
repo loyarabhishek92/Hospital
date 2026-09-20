@@ -16,7 +16,7 @@ export default function News() {
   const nav = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
-  const { data, isLoading, error } = useGetNewsQuery({ page });
+  const { data, isLoading, isError } = useGetNewsQuery({ page });
   // Generate page numbers array [1, 2, 3, 4, 5]
   const pageNumbers = Array.from({ length: data?.totalPages }, (_, i) => i + 1);
 
@@ -40,8 +40,21 @@ export default function News() {
 
 
 
-  if (isLoading) return <h1>Loading</h1>
-  if (error) return <h1>{error.data.message}</h1>
+    if (isLoading) {
+      return (
+        <section className="py-20 text-center">
+          Loading news...
+        </section>
+      );
+    }
+  
+    if (isError) {
+      return (
+        <section className="py-20 text-center text-red-500">
+          Failed to load news....
+        </section>
+      );
+    }
   return (
     <div>
       <section className="relative min-h-70 overflow-hidden">
