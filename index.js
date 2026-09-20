@@ -26,7 +26,7 @@ app.use(express.static('uploads/services'));
 app.use(express.static('uploads/news'));
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: ['http://localhost:5173', 'https://hospital-olive-nu.vercel.app/'],
 }));
 
 //database connection
