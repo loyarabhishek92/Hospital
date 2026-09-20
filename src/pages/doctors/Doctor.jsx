@@ -25,7 +25,7 @@ export default function Doctor() {
     if (isError) {
       return (
         <section className="py-20 text-center text-red-500">
-          Failed to load doctors.
+          Failed to load doctors....
         </section>
       );
     }
