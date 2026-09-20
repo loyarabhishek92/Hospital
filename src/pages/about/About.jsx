@@ -1,7 +1,7 @@
 import doctorCover from '@/assets/images/doctor.png';
 import appointmentCover from '@/assets/images/appointmentCover.png';
 import doctorheader from '@/assets/images/doctorheader.png';
-import vector from '@/assets/images/vector.png';
+// import vector from '@/assets/images/vector.png';
 import CommonDoctor from '@/components/CommonDoctor.jsx';
 import CommonNews from '@/components/CommonNews.jsx';
 import ContactContainer from '@/components/ContactContainer.jsx';
@@ -51,7 +51,7 @@ export default function About() {
         <div className="relative flex flex-col items-center justify-center text-white space-y-6 w-150 my-15">
 
 
-          <img src={vector} alt="imag" />
+          <img src="" alt="imag" />
 
 
           {/* Main Heading */}

@@ -4,7 +4,7 @@ import doctorheader from '@/assets/images/doctorheader.png';
 import Footer from '@/components/Footer.jsx';
 import CommonNews from '@/components/CommonNews.jsx';
 import ContactContainer from '@/components/ContactContainer.jsx';
-import vector from '@/assets/images/vector.png';
+// import vector from '@/assets/images/vector.png';
 import { useGetDoctorsQuery } from '@/features/admin/add/doctor/doctorApi.js';
 import { useNavigate } from 'react-router-dom';
 import { base } from '@/app/mainApi.js';
@@ -131,7 +131,7 @@ export default function Doctor() {
         <div className="relative flex flex-col items-center justify-center text-white space-y-6 w-150 my-15">
 
 
-          <img src={vector} alt="imag" />
+          <img src="" alt="imag" />
 
 
           {/* Main Heading */}
