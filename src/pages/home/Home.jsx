@@ -274,7 +274,7 @@ export default function Home() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-20">
 
-          {data.doctors?.map((doctor) => (
+          {data?.doctors?.map((doctor) => (
             <div className="flex flex-col space-y-2 justify-center items-center cursor-pointer border-2 border-gray-100 h-50 hover:bg-[#253477] hover:text-gray-200 hover:rounded-sm" key={doctor._id}>
               <HeartPulse size={50}/>
               <h1 className="font-serif">{doctor.specialist}</h1>

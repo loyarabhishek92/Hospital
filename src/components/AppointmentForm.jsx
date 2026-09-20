@@ -322,7 +322,7 @@ export default function AppointmentForm() {
                                     </SelectTrigger>
 
                                     <SelectContent>
-                                        {doctorData.doctors.map((doctor) => (
+                                        {doctorData?.doctors?.map((doctor) => (
                                             <SelectItem
                                                 key={doctor.name}
                                                 value={doctor.name}
@@ -369,7 +369,7 @@ export default function AppointmentForm() {
                                     </SelectTrigger>
 
                                     <SelectContent>
-                                        {doctorData.doctors?.map((department) => (
+                                        {doctorData?.doctors?.map((department) => (
                                             <SelectItem
                                                 key={department.specialist}
                                                 value={department.specialist}
