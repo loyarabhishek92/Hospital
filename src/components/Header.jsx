@@ -106,7 +106,7 @@ export default function Header() {
                         </button> */}
 
                         {/* appointment  */}
-                        <NavLink to={'/appointment'} className=" hidden h-[60px] min-w-[205px] items-center justify-center rounded-full bg-[#bfd5fa] px-8 text-base font-medium text-gray-900 transition hover:bg-white md:flex" >Appointment</NavLink>
+                        <NavLink to={'/appointment'} className=" hidden h-[50px] min-w-[175px] items-center justify-center rounded-full bg-[#bfd5fa] px-2 text-base font-medium text-gray-900 transition hover:bg-white md:flex" >Appointment</NavLink>
 
 
                         {/* profile  */}

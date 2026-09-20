@@ -48,6 +48,7 @@ export default function SearchBar() {
     };
     return (
         <div className="relative flex items-center">
+            
             {/* Search Icon Button */}
             {!isOpen && (
                 <button onClick={toggleSearch} className="p-2 text-white">

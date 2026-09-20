@@ -1,33 +1,35 @@
+import { lazy, Suspense } from "react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./components/RootLayout.jsx";
 import Home from "./pages/home/Home.jsx";
-import About from "./pages/about/About.jsx";
-import NotFound from "./components/NotFound.jsx";
-import Service from "./pages/services/Service.jsx";
-import Doctor from "./pages/doctors/Doctor.jsx";
-import News from "./pages/news/News.jsx";
-import Contact from "./pages/contacts/Contact.jsx";
-import Register from "./features/auth/Register.jsx";
-import Login from "./features/auth/Login.jsx";
-import UserProfile from "./features/user/UserProfile.jsx";
-import AdminPage from "./features/admin/AdminPage.jsx";
-import DoctorProfile from "./features/admin/add/doctor/DoctorProfile.jsx";
-import AddDoctor from "./features/admin/add/doctor/form/AddDoctor.jsx";
-import EditDoctor from "./features/admin/add/doctor/form/EditDoctor.jsx";
-import ServiceProfile from "./features/admin/add/service/ServiceProfile.jsx";
-import AddService from "./features/admin/add/service/form/AddService.jsx";
-import EditService from "./features/admin/add/service/form/EditService.jsx";
-import NewsProfile from "./features/admin/add/news/NewsProfile.jsx";
-import AddNews from "./features/admin/add/news/form/AddNews.jsx";
-import EditNews from "./features/admin/add/news/form/EditNews.jsx";
-import AppointmentProfile from "./features/admin/watch/AppointmentProfile.jsx";
-import ContactProfile from "./features/admin/watch/ContactProfile.jsx";
-import Appointment from "./pages/appointment/Appointment.jsx";
-import NewsDetails from "./pages/news/NewsDetails.jsx";
-import DoctorDetails from "./pages/doctors/DoctorDetails.jsx";
-import ServiceDetails from "./pages/services/ServiceDetails.jsx";
-import Try from "./components/Try.jsx";
+const About = lazy(() => import("./pages/about/About.jsx"));
+const NotFound = lazy(() => import("./components/NotFound.jsx"));
+const Service = lazy(() => import("./pages/services/Service.jsx"));
+const Doctor = lazy(() => import("./pages/doctors/Doctor.jsx"));
+const News = lazy(() => import("./pages/news/News.jsx"));
+const Contact = lazy(() => import("./pages/contacts/Contact.jsx"));
+const Register = lazy(() => import("./features/auth/Register.jsx"));
+const Login = lazy(() => import("./features/auth/Login.jsx"));
+const UserProfile = lazy(() => import("./features/user/UserProfile.jsx"));
+const AdminPage = lazy(() => import("./features/admin/AdminPage.jsx"));
+const DoctorProfile = lazy(() => import("./features/admin/add/doctor/DoctorProfile.jsx"));
+const AddDoctor = lazy(() => import("./features/admin/add/doctor/form/AddDoctor.jsx"));
+const EditDoctor = lazy(() => import("./features/admin/add/doctor/form/EditDoctor.jsx"));
+const ServiceProfile = lazy(() => import("./features/admin/add/service/ServiceProfile.jsx"));
+const AddService = lazy(() => import("./features/admin/add/service/form/AddService.jsx"));
+const EditService = lazy(() => import("./features/admin/add/service/form/EditService.jsx"));
+const NewsProfile = lazy(() => import("./features/admin/add/news/NewsProfile.jsx"));
+const AddNews = lazy(() => import("./features/admin/add/news/form/AddNews.jsx"));
+const EditNews = lazy(() => import("./features/admin/add/news/form/EditNews.jsx"));
+const AppointmentProfile = lazy(() => import("./features/admin/watch/AppointmentProfile.jsx"));
+const ContactProfile = lazy(() => import("./features/admin/watch/ContactProfile.jsx"));
+const Appointment = lazy(() => import("./pages/appointment/Appointment.jsx"));
+const NewsDetails = lazy(() => import("./pages/news/NewsDetails.jsx"));
+const DoctorDetails = lazy(() => import("./pages/doctors/DoctorDetails.jsx"));
+const ServiceDetails = lazy(() => import("./pages/services/ServiceDetails.jsx"));
+const Try = lazy(() => import("./components/Try.jsx"));
+
 
 
 
@@ -154,7 +156,9 @@ export default function App() {
 
   return (
     <div>
+      <Suspense fallback={<div>Loading....</div>}>
       <RouterProvider router={router} />
+      </Suspense>
     </div>
 
   )

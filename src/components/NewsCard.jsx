@@ -1,71 +1,36 @@
 import { base } from "@/app/mainApi.js";
-import { Eye, Heart } from "lucide-react";
+import { EyeIcon, HeartIcon } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
-export default function NewsCard({news}) {
-    const formattedDate = new Date(news.date).toLocaleDateString(
-        "en-US",
-        {
-            weekday: "long",
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-        }
-    );
+export default function NewsCard({ news }) {
+    const nav = useNavigate();
+    const [count, setCount] = useState(0);
+
+
+
+
+    const handleIncrement = () => {
+        setCount((prev) => prev + 1);
+    }
     return (
-        <article className="flex min-h-[192px] overflow-hidden rounded-md bg-white shadow-sm">
-
-            {/* Image */}
-            <div className="w-[200px] shrink-0">
-                <img
-                    src={`${base}/${news.image}`}
-                    alt={news.title}
-                    className="h-full w-full object-cover"
-                />
+        <div className="flex gap-x-3.5 overflow-hidden rounded-sm shadow-md hover:shadow-xl transition duration-300 group bg-gray-50" onClick={() => nav(`/news/${news?._id}`)}>
+            <div className="h-50 w-50 overflow-hidden">
+                <img src={`${base}/${news?.image}`} alt="image" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
             </div>
-
-            {/* Content */}
-            <div className="flex flex-1 flex-col justify-between px-6 py-6">
-
-                <div>
-                    <p className="text-sm font-normal tracking-wide text-sky-500">
-                        {formattedDate} | By {news.author}
-                    </p>
-
-                    <h3 className="mt-3 text-[21px] leading-8 text-gray-800">
-                        {news.title}
-                    </h3>
+            <div className="flex flex-col gap-y-3 py-5">
+                <span className="text-blue-400">{news?.date} {news?.createdAt} | By {news?.author}</span>
+                <h1 className="font-serif font-bold">{news?.title}</h1>
+                <div className="flex gap-x-2">
+                    <EyeIcon />
+                    <p>{count}</p>
+                    <HeartIcon className="cursor-pointer" />
+                    <p>{count}</p>
                 </div>
 
-                {/* Statistics */}
-                <div className="flex items-center gap-5">
-
-                    <div className="flex items-center gap-2">
-                        <Eye
-                            size={22}
-                            strokeWidth={2}
-                            className="text-blue-500"
-                        />
-
-                        <span className="text-sm text-gray-700">
-                            {news.views}
-                        </span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <Heart
-                            size={22}
-                            strokeWidth={2}
-                            className="text-pink-500"
-                        />
-
-                        <span className="text-sm text-gray-700">
-                            {news.likes}
-                        </span>
-                    </div>
-
-                </div>
             </div>
-        </article>
+        </div>
+
     )
 }

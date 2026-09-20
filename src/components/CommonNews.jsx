@@ -1,61 +1,141 @@
-import { base } from "@/app/mainApi.js";
 import { useGetNewsQuery } from "@/features/admin/add/news/newsApi.js";
-import { EyeIcon, HeartIcon, HeartOff, HeartOffIcon, HeartPlus } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel.jsx";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import NewsCard from "./NewsCard.jsx";
 
 
 export default function CommonNews() {
-    const { isLoading, error, data } = useGetNewsQuery();
-    const nav = useNavigate();
-    const [count, setCount] = useState(0);
 
-    if (isLoading) return <h1>Loading...</h1>
-    if (error) return <h1>{error.data}</h1>
+    const [api, setApi] = useState(null);
+    const [current, setCurrent] = useState(0);
 
+    const {
+        data,
+        isLoading,
+        isError,
+    } = useGetNewsQuery();
 
-    const handleIncrement = () => {
-        setCount((prev) => prev + 1);
+    if (isLoading) {
+        return (
+            <section className="py-20 text-center">
+                Loading news...
+            </section>
+        );
     }
 
+    if (isError) {
+        return (
+            <section className="py-20 text-center text-red-500">
+                Failed to load news.
+            </section>
+        );
+    }
+
+    const news = data?.newsForAdmin || [];
+
+    /*
+     * Create groups:
+     *
+     * slide 1:
+     * [news1, news2, news3, news4]
+     *
+     * slide 2:
+     * [news5, news6, news7, news8]
+     */
+    const slides = [];
+
+    for (let i = 0; i < news.length; i += 4) {
+        slides.push(news.slice(i, i + 4));
+    }
+
+    const handleApi = (carouselApi) => {
+        setApi(carouselApi);
+
+        setCurrent(carouselApi.selectedScrollSnap());
+
+        carouselApi.on("select", () => {
+            setCurrent(carouselApi.selectedScrollSnap());
+        });
+    };
+
+    const goToSlide = (index) => {
+        api?.scrollTo(index);
+    };
 
 
 
 
-   
+
+
+
     return (
-        <div className="mx-auto px-5 mt-30 max-w-7xl lg:px-8">
 
+        <section className="mx-auto px-5 mt-30 max-w-7xl lg:px-8">
+
+            {/* Heading */}
             <div className="flex flex-col gap-x-5 justify-center items-center">
                 <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Better information, Better health</h2>
                 <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">News</h1>
             </div>
 
+            {/* Carousel */}
+            <div className="mt-20 mx-auto px-5 max-w-7xl lg:px-8">
 
-            <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-20">
+                <Carousel
+                    setApi={handleApi}
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                >
 
-                {data.newsForAdmin?.map((news) => (
-                <div className="flex gap-x-3.5 overflow-hidden rounded-sm shadow-md hover:shadow-xl transition duration-300 group bg-gray-50" key={news._id}  onClick={() => nav(`/news/${news._id}`)}>
-                    <div className="h-50 w-50 overflow-hidden">
-                        <img src={`${base}/${news.image}`} alt="image" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-                    </div>
-                    <div className="flex flex-col gap-y-3 py-5">
-                        <span className="text-blue-400">{news.date} {news.createdAt} | {news.author}</span>
-                        <h1 className="font-serif font-bold">{news.title}</h1>
-                        <div className="flex gap-x-2">
-                            <EyeIcon />
-                            <p>{count}</p>
-                            <HeartIcon className="cursor-pointer" />
-                            <p>{count}</p>
-                        </div>
+                    <CarouselContent>
 
-                    </div>
-                </div>
-                ))}
+                        {slides.map((slide, index) => (
+                            <CarouselItem key={index}>
 
+                                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 ">
+
+                                    {slide.map((item) => (
+                                        <NewsCard
+                                            key={item._id}
+                                            news={item}
+                                        />
+                                    ))}
+
+                                </div>
+
+                            </CarouselItem>
+                        ))}
+
+                    </CarouselContent>
+
+                </Carousel>
 
             </div>
 
-        </div>
+            {/* Dots */}
+            <div className="mt-10 flex justify-center gap-3">
+
+                {slides.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`h-4 w-4 cursor-pointer rounded-full transition-all duration-200 ${current === index
+                            ? "scale-110 bg-[#1d2d68]"
+                            : "bg-blue-200"
+                            }`}
+                        aria-label={`Go to news slide ${index + 1}`}
+                    />
+                ))}
+
+            </div>
+
+        </section>
+
+
+
+
+
     )
 }

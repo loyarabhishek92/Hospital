@@ -1,71 +1,125 @@
-import { base } from "@/app/mainApi.js";
+
 import { useGetDoctorsQuery } from "@/features/admin/add/doctor/doctorApi.js";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import DoctorCard from "./DoctorCard.jsx";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel.jsx";
 
 
 export default function CommonDoctor() {
 
-  const { data, isLoading, error } = useGetDoctorsQuery();
-  const nav = useNavigate();
-
-  if (isLoading) return <h1>Loading...</h1>
-  if (error) return <h1>{error.data.message}</h1>
-  console.log(data);
+  const [api, setApi] = useState(null);
+    const [current, setCurrent] = useState(0);
+  
+    const {
+      data,
+      isLoading,
+      isError,
+    } = useGetDoctorsQuery();
+  
+    if (isLoading) {
+      return (
+        <section className="py-20 text-center">
+          Loading doctors...
+        </section>
+      );
+    }
+  
+    if (isError) {
+      return (
+        <section className="py-20 text-center text-red-500">
+          Failed to load doctors.
+        </section>
+      );
+    }
+  
+    const news = data?.doctors || [];
+  
+    /*
+     * Create groups:
+     *
+     * slide 1:
+     * [news1, news2, news3, news4]
+     *
+     * slide 2:
+     * [news5, news6, news7, news8]
+     */
+    const slides = [];
+  
+    for (let i = 0; i < news.length; i += 3) {
+      slides.push(news.slice(i, i + 3));
+    }
+  
+    const handleApi = (carouselApi) => {
+      setApi(carouselApi);
+  
+      setCurrent(carouselApi.selectedScrollSnap());
+  
+      carouselApi.on("select", () => {
+        setCurrent(carouselApi.selectedScrollSnap());
+      });
+    };
+  
+    const goToSlide = (index) => {
+      api?.scrollTo(index);
+    };
+  
   return (
-    <div>
-      <div className='mx-auto px-5 max-w-7xl lg:px-8 mt-15 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-        {data.doctors?.map((doctor, index) => (
-          <div key={index} className='rounded-sm'>
-            <img src={`${base}/${doctor.image}`} alt="image" className='rounded-t-sm object-cover h-80 w-full' />
-            <div className='flex flex-col items-center space-y-2 py-5 bg-[#BFD2F8]'>
-              <h1>Dr. {doctor.name}</h1>
-              <h1 className='text-2xl font-bold tracking-wider'>{doctor.specialist}</h1>
+    
+      <div className='mx-auto px-5 max-w-7xl lg:px-8 mt-15 '>
+        {/* Carousel */}
+      <div className="w-full">
 
-              {/* doctor social media icon  */}
-              <div className="flex items-center gap-3">
-                {/* LinkedIn */}
-                <a
-                  href={doctor.linkedinId}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1F2B6C] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#101846]"
-                >
-                  <FaLinkedinIn size={15} className="text-[#BFD2F8]" />
-                </a>
+        <Carousel
+          setApi={handleApi}
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
 
-                {/* Facebook */}
-                <a
-                  href={doctor.facebookId}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1F2B6C] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#101846]"
-                >
-                  <FaFacebookF size={15} className="text-[#BFD2F8]" />
-                </a>
+          <CarouselContent>
 
-                {/* Instagram */}
-                <a
-                  href={doctor.instagramId}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1F2B6C] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#101846]"
-                >
-                  <FaInstagram size={15} className="text-[#BFD2F8]" />
-                </a>
-              </div>
+            {slides.map((slide, index) => (
+              <CarouselItem key={index}>
 
-              
+                <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            </div>
+                  {slide.map((item) => (
+                    <DoctorCard
+                      key={item._id}
+                      doctor={item}
+                    />
+                  ))}
 
-            <div className='text-center py-3 bg-[#202f72] text-[#BFD2F8] rounded-b-sm cursor-pointer' onClick={() => nav(`/doctor/${doctor._id}`)}>
-              View Profile
-            </div>
-          </div>
+                </div>
+
+              </CarouselItem>
+            ))}
+
+          </CarouselContent>
+
+        </Carousel>
+
+      </div>
+
+      {/* Dots */}
+      <div className="mt-10 flex justify-center gap-3">
+
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`h-4 w-4 cursor-pointer rounded-full transition-all duration-200 ${current === index
+              ? "scale-110 bg-[#1d2d68]"
+              : "bg-blue-200"
+              }`}
+            aria-label={`Go to news slide ${index + 1}`}
+          />
         ))}
 
       </div>
-    </div>
+
+      </div>
+  
   )
 }

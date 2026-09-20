@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Input } from "./ui/input.jsx";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { SendIcon } from "lucide-react";
 
 
 
@@ -37,8 +38,11 @@ export default function Footer() {
 
         <div className="flex flex-col gap-y-7">
           <h2 className="text-xl font-extrabold">Newsletter</h2>
-          <div className="flex flex-col gap-y-1.5 ">
+          <div className="relative flex items-center gap-y-1.5 ">
             <Input type="text" placeholder="Enter your email Address" className="bg-[#BFD2F8] text-black max-w-full h-10 rounded-sm" />
+            <div className="absolute right-2">
+            <SendIcon className="text-[#1F2B6C]" />
+            </div>
           </div>
         </div>
 

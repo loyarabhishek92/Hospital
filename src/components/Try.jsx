@@ -1,7 +1,7 @@
 import { useGetNewsQuery } from "@/features/admin/add/news/newsApi.js";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel.jsx";
-import NewsCard from "./NewsCard.jsx";
 import { useState } from "react";
+import NewsCard from "./NewsCard.jsx";
 
 
 
@@ -70,17 +70,16 @@ export default function Try() {
 
 
   return (
-    <section className="bg-[#f8fbfc] px-5 py-16 md:px-10 lg:px-20">
+    <section className="mx-auto px-5 mt-30 max-w-7xl lg:px-8">
 
       {/* Heading */}
-      <div className="mb-16 text-center">
-        <h2 className="font-serif text-4xl font-semibold text-[#1d2d68]">
-          News
-        </h2>
+      <div className="flex flex-col gap-x-5 justify-center items-center">
+        <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Better information, Better health</h2>
+        <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">News</h1>
       </div>
 
       {/* Carousel */}
-      <div className="mx-auto max-w-[1220px]">
+      <div className="mt-20 mx-auto px-5 max-w-7xl lg:px-8">
 
         <Carousel
           setApi={handleApi}
@@ -95,7 +94,7 @@ export default function Try() {
             {slides.map((slide, index) => (
               <CarouselItem key={index}>
 
-                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 ">
 
                   {slide.map((item) => (
                     <NewsCard
@@ -123,14 +122,16 @@ export default function Try() {
             key={index}
             onClick={() => goToSlide(index)}
             className={`h-3 w-3 rounded-full transition-all duration-200 ${current === index
-                ? "scale-110 bg-[#1d2d68]"
-                : "bg-blue-200"
+              ? "scale-110 bg-[#1d2d68]"
+              : "bg-blue-200"
               }`}
             aria-label={`Go to news slide ${index + 1}`}
           />
         ))}
 
       </div>
+
+      
 
     </section>
   )

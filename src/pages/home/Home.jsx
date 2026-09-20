@@ -19,14 +19,29 @@ import { ArrowRight, HeartPulse } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { useGetServicesQuery } from '@/features/admin/add/service/serviceApi.js';
 import { Button } from '@/components/ui/button.jsx';
+import { Spinner } from '@/components/ui/spinner.jsx';
 
 export default function Home() {
-  const { data, isLoading, error } = useGetDoctorsQuery();
+  const { data, isLoading, isError } = useGetDoctorsQuery();
   const { data: service } = useGetServicesQuery();
   const nav = useNavigate();
 
-  if (isLoading) return <h1>Loading...</h1>
-  if (error) return <h1>{error.data}</h1>
+  if (isLoading) {
+        return (
+            <section className="py-20  flex items-center justify-center">
+                <Spinner className={"size-30 text-blue-400"}/> 
+                <h1>Loading page...</h1>
+            </section>
+        );
+    }
+
+    if (isError) {
+        return (
+            <section className="py-20 text-center text-red-500">
+                Failed to load page.
+            </section>
+        );
+    }
   return (
     <div>
       {/* hero section  */}
@@ -176,8 +191,8 @@ export default function Home() {
       {/* doctor cover photo */}
       <div className='mx-auto mt-15 max-w-7xl lg:px-8'>
         <div className="relative overflow-hidden ">
-          <img src={doctorphoto} alt="image" className="w-full h-full object-cover" />
-          <img src={appointmentCover} alt="image" className="absolute inset-0 w-full h-full object-cover " />
+          <img src={doctorphoto} alt="image" className=" h-50 w-full bg-top bg-cover inset-0 object-cover" />
+          <img src={appointmentCover} alt="image" className="absolute inset-0 w-full h-50 bg-none object-cover " />
         </div>
       </div>
 
@@ -259,9 +274,9 @@ export default function Home() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-20">
 
-          {data.doctors?.map((doctor, index) => (
-            <div className="flex flex-col space-y-2 justify-center items-center cursor-pointer border-2 border-gray-100 h-50 hover:bg-[#253477] hover:text-gray-200 hover:rounded-sm" key={index}>
-              <HeartPulse />
+          {data.doctors?.map((doctor) => (
+            <div className="flex flex-col space-y-2 justify-center items-center cursor-pointer border-2 border-gray-100 h-50 hover:bg-[#253477] hover:text-gray-200 hover:rounded-sm" key={doctor._id}>
+              <HeartPulse size={50}/>
               <h1 className="font-serif">{doctor.specialist}</h1>
 
 
@@ -274,7 +289,7 @@ export default function Home() {
 
 
       {/* appointment form  */}
-      <div>
+      <div className='mt-15'>
         <section className="relative min-h-screen overflow-scroll">
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${homeApp})` }}></div>
           <div className="absolute inset-0 bg-cover bg-center bg-white opacity-80"></div>

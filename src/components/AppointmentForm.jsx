@@ -26,10 +26,23 @@ const addSchema = Yup.object({
 export default function AppointmentForm() {
     const { user } = useSelector(state => state.userSlice);
     const [addAppointment, { isLoading }] = useAddAppointmentMutation();
-    const { data: doctorData, isLoading: doctorLoading, error } = useGetDoctorsQuery();
+    const { data: doctorData, isLoading: doctorLoading, isError } = useGetDoctorsQuery();
 
-    if (doctorLoading) return <h1>Loading</h1>
-    if (error) return <h1>{error.doctorData}</h1>
+     if (doctorLoading) {
+      return (
+        <section className="py-20 text-center">
+          Loading doctors...
+        </section>
+      );
+    }
+  
+    if (isError) {
+      return (
+        <section className="py-20 text-center text-red-500">
+          Failed to load doctors.
+        </section>
+      );
+    }
 
     return (
         <div className="bg-[#202f72] rounded-md">
