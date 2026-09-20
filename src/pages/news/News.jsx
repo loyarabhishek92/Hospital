@@ -77,7 +77,7 @@ export default function News() {
       <div className=" grid grid-cols-1 lg:grid-cols-3 space-x-5 mt-15 mx-auto max-w-7xl px-5 lg:px-8">
 
         <div className="flex flex-col col-span-2 space-y-10">
-          {data.news?.map((newsItem, index) => (
+          {data?.news?.map((newsItem, index) => (
 
             <div key={index} className='flex flex-col space-y-3'>
               <img src={`${base}/${newsItem.image}`} alt="image" />

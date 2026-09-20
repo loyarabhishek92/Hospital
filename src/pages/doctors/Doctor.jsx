@@ -66,7 +66,7 @@ export default function Doctor() {
 
       {/* doctor section  */}
       <div className='mx-auto px-5 max-w-7xl lg:px-8 mt-15 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-        {data.doctors?.map((doctor) => (
+        {data?.doctors?.map((doctor) => (
           <div key={doctor._id} className='rounded-sm'>
             <img src={`${base}/${doctor.image}`} alt="image" className='rounded-t-sm object-cover h-100 w-full' />
             <div className='flex flex-col items-center space-y-2 py-5 bg-[#BFD2F8]'>
