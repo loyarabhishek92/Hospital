@@ -90,7 +90,7 @@ export const getDoctors = async (req, res) => {
 
 
 
-        const doctors = await query;
+        const doctors = await query.sort({createdAt: -1});
         // const total = await Product.countDocuments({});
         // const pages = Math.ceil(total / limit); 
 
