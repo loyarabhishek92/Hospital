@@ -109,12 +109,12 @@ export const getNews = async (req, res) => {
 
 
 
-        const news = (await query.skip(skip).limit(limit));
+        const news = await query.skip(skip).limit(limit);
+        const newsForAdmin = await News.find({});
         const total = await News.countDocuments();
         const pages = Math.ceil(total / limit);
-        const newsForAdmin = (await query.sort({ createdAt: -1 }).lean());
 
-        
+
 
         return res.status(200).json({
             success: true,
