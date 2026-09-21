@@ -201,7 +201,7 @@ export default function News() {
 
         {/* Recent News  */}
         <div className='grid shrink-0 mt-10 lg:mt-0'>
-          <RecentNews adminData={adminData} />
+          <RecentNews adminData={adminData} setSearchParams= {setSearchParams} />
         </div>
 
 

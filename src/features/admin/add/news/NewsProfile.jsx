@@ -9,11 +9,29 @@ import RemoveNews from "./RemoveNews.jsx";
 
 
 export default function NewsProfile() {
-    const { isLoading, error, data } = useGetNewsQuery();
+    const { isLoading, error, data, isError } = useGetNewsQuery();
     const nav = useNavigate();
 
-    if (isLoading) return <h1>Loading...</h1>
-    if (error) return <h1>{error.data}</h1>
+if (isLoading) {
+  return <p>Loading news...</p>;
+}
+
+if (isError) {
+  return (
+    <div className="rounded-lg bg-red-50 p-4 text-red-600">
+      <p className="font-semibold">
+        Failed to load news...
+      </p>
+
+      <p className="text-sm">
+        {error?.data?.message ||
+          error?.message ||
+          error?.error ||
+          "Something went wrong"}
+      </p>
+    </div>
+  );
+}
     return (
         <div className="pt-10 px-50">
             <div className="flex justify-end">
@@ -33,7 +51,7 @@ export default function NewsProfile() {
                 <TableBody>
 
 
-                    {data.newsForAdmin?.map(item => (
+                    {data?.newsForAdmin?.map(item => (
                         <TableRow key={item._id}>
                             <TableCell>
                                 <div className="flex items-center gap-3">

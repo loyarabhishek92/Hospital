@@ -27,7 +27,7 @@ const categories = [
     }
 ];
 
-export default function RecentNews({ adminData }) {
+export default function RecentNews({ adminData, setSearchParams }) {
     const nav = useNavigate();
 
 
