@@ -27,19 +27,9 @@ const categories = [
     }
 ];
 
-export default function RecentNews() {
+export default function RecentNews({ adminData }) {
     const nav = useNavigate();
-    const [searchParams, setSearchParams] = useSearchParams();
-    const search = searchParams.get("search");
-    const { data, isLoading, error } = useGetNewsQuery({
-        search: searchParams.get("search") ?? ''
-    });
 
-
-
-    if (isLoading) return <h1>Loading...</h1>
-    if (error) return <h1>{error.data.message}</h1>
-    console.log(data)
 
 
 
@@ -97,14 +87,14 @@ export default function RecentNews() {
                     <h1 className="text-4xl font-serif font-bold tracking-wider text-[#253477]">Recent Posts</h1>
 
                     <div className="flex flex-col gap-y-3 ">
-                        {data?.newsForAdmin.length === 0 && (
+                        {adminData?.length === 0 && (
                             <div className="flex items-center justify-center h-[60vh] text-red-500 text-lg">
                                 No news found.
                             </div>
                         )}
 
 
-                        {data.newsForAdmin?.map((NewsItem) => (
+                        {adminData?.map((NewsItem) => (
                             <div className="flex gap-x-3.5 cursor-pointer overflow-hidden rounded-sm shadow-md hover:shadow-xl transition duration-300 group bg-gray-50" key={NewsItem._id} onClick={() => nav(`/news/${NewsItem._id}`)}>
                                 <div className="h-15 w-15 overflow-hidden rounded-sm">
                                     <img src={`${base}/${NewsItem.image}`} alt="image" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu.jsx";
 import { Button } from "./ui/button.jsx";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar.jsx";
-import { BadgeCheckIcon, BellIcon, ListOrdered, LogOutIcon, SettingsIcon, ShoppingBagIcon, UserIcon } from "lucide-react";
+import { BadgeCheckIcon, LogOutIcon, SettingsIcon, ShoppingBagIcon, UserIcon } from "lucide-react";
 import { base } from "@/app/mainApi.js";
 
 const adminItems = [
@@ -20,14 +20,6 @@ const adminItems = [
         icon: SettingsIcon,
         property: 'Admin Panel'
     },
-    {
-        icon: ListOrdered,
-        property: 'Orders'
-    },
-    {
-        icon: BellIcon,
-        property: 'Notifications'
-    }
 ];
 
 
@@ -43,16 +35,8 @@ const userItems = [
     },
     {
         icon: ShoppingBagIcon,
-        property: 'Cart'
+        property: 'My appointment'
     },
-    {
-        icon: ListOrdered,
-        property: 'Orders'
-    },
-    {
-        icon: BellIcon,
-        property: 'Notifications'
-    }
 ];
 
 export default function DropDownMenu({ user }) {
@@ -90,13 +74,7 @@ export default function DropDownMenu({ user }) {
                                             nav('/admin');
                                             break;
 
-                                        case 'Cart':
-                                            nav('/cart');
-                                            break;
-
-                                        case 'Orders':
-                                            nav('/orders');
-                                            break;
+                                        
 
                                         default:
                                             break;

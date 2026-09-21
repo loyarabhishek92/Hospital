@@ -32,25 +32,27 @@ export default function Header() {
                     {/* information  */}
                     <div className="flex flex-col items-center justify-center gap-5 sm:flex-row sm:flex-wrap sm:gap-x-10 sm:gap-y-5 lg:flex-nowrap lg:gap-x-8">
 
-                        {/* Emergency  */}
-                        <div className="flex items-center gap-3">
-                            <div>
-                                <img src={call} className="h-10 w-10" alt="call" />
+                        <div className="flex space-x-10">
+                            {/* Emergency  */}
+                            <div className="flex items-center gap-3">
+                                <div>
+                                    <img src={call} className="h-10 w-10" alt="call" />
+                                </div>
+                                <div>
+                                    <p className="text-sm font-medium uppercase text-gray-900 sm:text-base">Emergency</p>
+                                    <a href="tel: +977-9844580317" className="text-[#159EEC] whitespace-nowrap text-sm font-medium sm:text-base">(237) 542-254-854</a>
+                                </div>
                             </div>
-                            <div>
-                                <p className="text-sm font-medium uppercase text-gray-900 sm:text-base">Emergency</p>
-                                <a href="tel: +977-9844580317" className="text-[#159EEC] whitespace-nowrap text-sm font-medium sm:text-base">(237) 542-254-854</a>
-                            </div>
-                        </div>
 
-                        {/* working hours  */}
-                        <div className="flex gap-3 items-center">
-                            <div>
-                                <img src={time} alt="time" />
-                            </div>
-                            <div>
-                                <p className="text-sm font-medium uppercase text-gray-900 sm:text-base">WORK HOUR</p>
-                                <p className="text-[#159EEC] whitespace-nowrap text-sm font-medium sm:text-base uppercase">09:00 - 20:00 Everyday</p>
+                            {/* working hours  */}
+                            <div className="flex gap-3 items-center">
+                                <div>
+                                    <img src={time} alt="time" />
+                                </div>
+                                <div>
+                                    <p className="text-sm font-medium uppercase text-gray-900 sm:text-base">WORK HOUR</p>
+                                    <p className="text-[#159EEC] whitespace-nowrap text-sm font-medium sm:text-base uppercase">09:00 - 20:00 Everyday</p>
+                                </div>
                             </div>
                         </div>
 
@@ -74,7 +76,7 @@ export default function Header() {
 
                 <div className="mx-auto flex h-[85px] max-w-7xl items-center justify-between px-5 lg:px-8">
 
-                     {/* logo  */}
+                    {/* logo  */}
                     <div className="lg:hidden flex justify-start">
                         <span className="text-[#BFD2F8] font-serif text-4xl font-bold tracking-tight sm:text-5xl">MED</span>
                         <span className="text-white font-serif text-4xl font-bold tracking-tight sm:text-5xl">DICAL</span>
@@ -97,13 +99,8 @@ export default function Header() {
 
                         {/* Search */}
                         <SearchBar />
-                        {/* <button
-                            type="button"
-                            aria-label="Search"
-                            className="text-white transition hover:text-[#8fc9ff]"
-                        >
-                            <Search size={32} strokeWidth={1.8} />
-                        </button> */}
+
+
 
                         {/* appointment  */}
                         <NavLink to={'/appointment'} className=" hidden h-[50px] min-w-[175px] items-center justify-center rounded-full bg-[#bfd5fa] px-2 text-base font-medium text-gray-900 transition hover:bg-white md:flex" >Appointment</NavLink>

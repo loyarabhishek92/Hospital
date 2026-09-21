@@ -1,216 +1,199 @@
-import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useGlobalSearchQuery } from "./searchApi.js";
-import { useFormik } from "formik";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaSearch, FaTimes } from "react-icons/fa";
-import { ArrowRight, Calendar, Eye, Heart, User } from "lucide-react";
 import { base } from "@/app/mainApi.js";
-import { Button } from "@/components/ui/button.jsx";
+import { useGlobalSearchQuery } from "@/pages/search/searchApi.js";
+import { useFormik } from "formik";
+import { useEffect, useRef, useState } from "react";
+import { FaSearch, FaTimes } from "react-icons/fa";
+import { Link, useSearchParams } from "react-router-dom";
 
 
 export default function SearchBar() {
-    const nav = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
+    const inputRef = useRef(null);
 
-    // 1. Get current search term from URL
+    // Get current search term from URL
     const currentQuery = searchParams.get('q') || '';
 
-    // 2. RTK Query Hook - Only fetch if currentQuery is not empty
+    // RTK Query Hook
     const { data, isLoading, isFetching } = useGlobalSearchQuery(currentQuery, {
-        skip: currentQuery === '', // Skip fetching if input is empty
+        skip: currentQuery === '',
     });
 
-    // 3. Formik Setup
+    // Formik Setup
     const formik = useFormik({
-        initialValues: {
-            searchTerm: currentQuery,
-        },
-        enableReinitialize: true, // Update form if URL changes externally
+        initialValues: { searchTerm: currentQuery },
+        enableReinitialize: true,
         onSubmit: (values) => {
-            // Update URL params on submit
             if (values.searchTerm.trim()) {
                 setSearchParams({ q: values.searchTerm });
             } else {
-                setSearchParams({}); // Clear params if empty
+                setSearchParams({});
             }
         },
     });
 
-    // Toggle Handler
+    // Focus input when opened
+    useEffect(() => {
+        if (isOpen && inputRef.current) {
+            inputRef.current.focus();
+        }
+        // Prevent body scroll when overlay is open
+        document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+        return () => { document.body.style.overflow = 'unset'; };
+    }, [isOpen]);
+
     const toggleSearch = () => {
         setIsOpen(!isOpen);
         if (isOpen) {
-            // If closing, clear search
             formik.resetForm();
-            setSearchParams({});
+            setSearchParams({}); // Clear URL when closing
         }
     };
+
+
+
+
     return (
-        <div className="relative flex items-center">
-            
-            {/* Search Icon Button */}
-            {!isOpen && (
-                <button onClick={toggleSearch} className="p-2 text-white">
-                    <FaSearch size={20} />
-                </button>
-            )}
+        <>
+            {/* 1. The Search Icon in Navbar */}
+            <button
+                onClick={toggleSearch}
+                className="text-white hover:text-blue-200 transition-colors p-2"
+                aria-label="Search"
+            >
+                <FaSearch size={20} />
+            </button>
 
-            {/* Input Field Form */}
+            {/* 2. The Full Screen Overlay */}
             {isOpen && (
-                <form onSubmit={formik.handleSubmit} className="flex items-center bg-white rounded-md">
-                    <input
-                        type="text"
-                        name="searchTerm"
-                        placeholder="Search doctors, services, news..."
-                        onChange={formik.handleChange}
-                        value={formik.values.searchTerm}
-                        className="px-3 py-1 text-black outline-none"
-                        autoFocus
-                    />
-                    <button type="submit" className="p-2 text-gray-600">
-                        <FaSearch />
-                    </button>
-                    <button type="button" onClick={toggleSearch} className="p-2 text-red-500">
-                        <FaTimes />
-                    </button>
-                </form>
-            )}
+                <div className="fixed inset-0 z-[999] bg-[#1e3a8a]/95 backdrop-blur-sm overflow-y-auto">
+                    <div className="max-w-6xl mx-auto px-4 py-8">
 
-            {/* Display Results (Dropdown or Section) */}
-            {isOpen && currentQuery && (
-                <div className="absolute top-12 right-0 w-80 bg-white shadow-lg p-4 rounded-md z-50 text-black">
-                    {isLoading || isFetching ? (
-                        <p>Loading...</p>
-                    ) : (
-                        <div>
-                            {/* Doctors Section */}
-                            {data?.doctors?.length > 0 && (
-                                <div className="mb-2">
-                                    <h4 className="font-bold text-sm text-gray-500">Doctors</h4>
-                                    {data.doctors.map((doc) => (
-                                        <div key={doc._id} className='rounded-sm'>
-                                            <img src={`${base}/${doc.image}`} alt="image" className='rounded-t-sm object-cover h-80 w-full' />
-                                            <div className='flex flex-col items-center space-y-2 py-5 bg-[#BFD2F8]'>
-                                                <h1>Dr. {doc.name}</h1>
-                                                <h1 className='text-2xl font-bold tracking-wider'>{doc.specialist}</h1>
-
-                                                {/* doctor social media icon  */}
-                                                <div className="flex items-center gap-3">
-                                                    {/* LinkedIn */}
-                                                    <a
-                                                        href={doc.linkedinId}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1F2B6C] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#101846]"
-                                                    >
-                                                        <FaLinkedinIn size={15} className="text-[#BFD2F8]" />
-                                                    </a>
-
-                                                    {/* Facebook */}
-                                                    <a
-                                                        href={doc.facebookId}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1F2B6C] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#101846]"
-                                                    >
-                                                        <FaFacebookF size={15} className="text-[#BFD2F8]" />
-                                                    </a>
-
-                                                    {/* Instagram */}
-                                                    <a
-                                                        href={doc.instagramId}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1F2B6C] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#101846]"
-                                                    >
-                                                        <FaInstagram size={15} className="text-[#BFD2F8]" />
-                                                    </a>
-                                                </div>
-
-
-
-                                            </div>
-
-                                            <div className='text-center py-3 bg-[#202f72] text-[#BFD2F8] rounded-b-sm cursor-pointer' onClick={() => nav(`/doctor/${doc._id}`)}>
-                                                View Profile
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-
-                            {/* Services Section */}
-                            {data?.services?.length > 0 && (
-                                <div className="mb-2">
-                                    <h4 className="font-bold text-sm text-gray-500">Services</h4>
-                                    {data.services.map((srv) => (
-                                        <div key={srv._id} className='rounded-sm border-2 border-gray-200'>
-                                            <img src={`${base}/${srv.image}`} alt="image" className='rounded-t-sm object-cover h-80 w-full' />
-                                            <div className='flex flex-col space-y-2 py-5 px-5 pt-15'>
-                                                <h1 className='text-2xl font-bold tracking-wider'>{srv.name}</h1>
-                                                <h1>{srv.description}</h1>
-
-
-                                                <div className='flex gap-2 py-3 cursor-pointer ' onClick={() => nav(`/service/${srv._id}`)}>
-                                                    <h1 className='text-blue-400'>Learn More</h1> <ArrowRight />
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-
-                            {/* News Section */}
-                            {data?.news?.length > 0 && (
-                                <div>
-                                    <h4 className="font-bold text-sm text-gray-500">News</h4>
-                                    {data.news.map((n) => (
-                                        <div key={n._id} className='flex flex-col space-y-3 cursor-pointer hover:bg-gray-100 p-1'>
-                                            <img src={`${base}/${n.image}`} alt="image" />
-
-                                            <div className="flex space-x-2 mt-3">
-                                                <div className="flex space-x-2">
-                                                    <Calendar />
-                                                    <span>{n.date}</span>
-                                                    <span>{n.createdAt}</span>
-                                                </div>
-
-                                                <div className="flex space-x-2">
-                                                    <User />
-                                                    <h1>{n.author}</h1>
-                                                </div>
-
-                                                <div className="flex space-x-2">
-                                                    <Eye />
-                                                    <span>0</span>
-                                                </div>
-
-                                                <div className="flex space-x-2">
-                                                    <Heart />
-                                                    <span>0</span>
-                                                </div>
-                                            </div>
-                                            <h1 className="font-serif text-3xl  text-[#202f72]">{n.title}</h1>
-                                            <p className='mt-3 line-clamp-4'>{n.description}</p>
-
-                                            <Button className="text-black w-fit p-6 rounded-full mt-3" onClick={() => nav(`/news/${n._id}`)}>Read More <ArrowRight /></Button>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-
-                            {/* No Results */}
-                            {data?.doctors?.length === 0 &&
-                                data?.services?.length === 0 &&
-                                data?.news?.length === 0 && (
-                                    <p className="text-gray-500">No results found.</p>
-                                )}
+                        {/* Header with Close Button */}
+                        <div className="flex justify-end mb-8">
+                            <button
+                                onClick={toggleSearch}
+                                className="text-white hover:text-red-400 p-2 transition-colors"
+                            >
+                                <FaTimes size={32} />
+                            </button>
                         </div>
-                    )}
+
+                        {/* Search Input Form */}
+                        <form onSubmit={formik.handleSubmit} className="relative max-w-3xl mx-auto mb-12">
+                            <div className="relative flex items-center">
+                                <FaSearch className="absolute left-6 text-gray-400 text-xl" />
+                                <input
+                                    ref={inputRef}
+                                    type="text"
+                                    name="searchTerm"
+                                    placeholder="Search doctors, services, news..."
+                                    onChange={formik.handleChange}
+                                    value={formik.values.searchTerm}
+                                    className="w-full bg-white text-gray-800 text-xl rounded-full py-4 pl-16 pr-32 outline-none shadow-lg"
+                                />
+                                <button
+                                    type="submit"
+                                    className="absolute right-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors"
+                                >
+                                    Search
+                                </button>
+                            </div>
+                        </form>
+
+                        {/* Search Results Area */}
+                        <div className="max-w-4xl mx-auto text-white">
+                            {isLoading || isFetching ? (
+                                <div className="text-center text-xl text-blue-200">Searching...</div>
+                            ) : currentQuery ? (
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                                    {/* Doctors Column */}
+                                    <div>
+                                        <h3 className="text-xl font-bold border-b border-blue-400 pb-2 mb-4 text-blue-200">
+                                            Doctors
+                                        </h3>
+                                        {data?.doctors?.length > 0 ? (
+                                            <ul className="space-y-3">
+                                                {data.doctors.map((doc) => (
+                                                    <li key={doc._id}>
+                                                        <Link to={`/doctor/${doc._id}`} onClick={toggleSearch} className="block p-3 rounded bg-blue-800/50 hover:bg-blue-700 transition-colors">
+                                                            <div className="flex space-x-3 items-center ">
+                                                                <img src={`${base}/${doc.image}`} className="rounded-full h-10 w-10" alt="" />
+                                                                <div>
+                                                                    <div className="font-semibold">{doc.name}</div>
+                                                                    <div className="text-sm text-blue-300">{doc.specialist}</div>
+                                                                </div>
+                                                            </div>
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p className="text-blue-300 text-sm">No doctors found.</p>
+                                        )}
+                                    </div>
+
+                                    {/* Services Column */}
+                                    <div>
+                                        <h3 className="text-xl font-bold border-b border-blue-400 pb-2 mb-4 text-blue-200">
+                                            Services
+                                        </h3>
+                                        {data?.services?.length > 0 ? (
+                                            <ul className="space-y-3">
+                                                {data.services.map((srv) => (
+                                                    <li key={srv._id}>
+                                                        <Link to={`/service/${srv._id}`} onClick={toggleSearch} className="block p-3 rounded bg-blue-800/50 hover:bg-blue-700 transition-colors">
+                                                            <div className="flex space-x-3 items-center">
+                                                                <img src={`${base}/${srv.image}`} className="rounded-full h-10 w-10" alt="" />
+                                                                <h1 className="font-semibold">{srv.name}</h1>
+                                                            </div>
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p className="text-blue-300 text-sm">No services found.</p>
+                                        )}
+                                    </div>
+
+                                    {/* News Column */}
+                                    <div>
+                                        <h3 className="text-xl font-bold border-b border-blue-400 pb-2 mb-4 text-blue-200">
+                                            News
+                                        </h3>
+                                        {data?.news?.length > 0 ? (
+                                            <ul className="space-y-3">
+                                                {data.news.map((n) => (
+                                                    <li key={n._id}>
+                                                        <Link to={`/news/${n._id}`} onClick={toggleSearch} className="block p-3 rounded bg-blue-800/50 hover:bg-blue-700 transition-colors">
+                                                            <div className="flex space-x-3 items-center ">
+                                                                <img src={`${base}/${n.image}`} className="rounded-full h-10 w-10" alt="" />
+                                                                <div>
+                                                                    <div className="font-semibold">{n.title}</div>
+                                                                    <div className="text-sm text-blue-300">{n.date} | By {n.author}</div>
+                                                                </div>
+                                                            </div>
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p className="text-blue-300 text-sm">No news found.</p>
+                                        )}
+                                    </div>
+
+                                </div>
+                            ) : (
+                                <div className="text-center text-blue-300 mt-20">
+                                    <p className="text-xl">Start typing to search across our platform.</p>
+                                </div>
+                            )}
+                        </div>
+
+                    </div>
                 </div>
             )}
-        </div>
+        </>
     )
 }

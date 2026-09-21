@@ -40,21 +40,21 @@ export default function News() {
 
 
 
-    if (isLoading) {
-      return (
-        <section className="py-20 text-center">
-          Loading news...
-        </section>
-      );
-    }
-  
-    if (isError) {
-      return (
-        <section className="py-20 text-center text-red-500">
-          Failed to load news....
-        </section>
-      );
-    }
+  if (isLoading) {
+    return (
+      <section className="py-20 text-center">
+        Loading news...
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className="py-20 text-center text-red-500">
+        Failed to load news....
+      </section>
+    );
+  }
   return (
     <div>
       <section className="relative min-h-70 overflow-hidden">
@@ -89,6 +89,7 @@ export default function News() {
       {/* news section  */}
       <div className=" grid grid-cols-1 lg:grid-cols-3 space-x-5 mt-15 mx-auto max-w-7xl px-5 lg:px-8">
 
+        {/* pagination news  */}
         <div className="flex flex-col col-span-2 space-y-10">
           {data?.news?.map((newsItem, index) => (
 
