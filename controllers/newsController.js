@@ -60,33 +60,33 @@ export const getNews = async (req, res) => {
         let query = News.find(mongoQuery);
 
 
-        // search ko lagi
-        if (req.query.search) {
-            const search = req.query.search.trim();
+        // // search ko lagi
+        // if (req.query.search) {
+        //     const search = req.query.search.trim();
 
-            query.find({
-                $or: [
-                    {
-                        title: {
-                            $regex: search,
-                            $options: 'i',
-                        },
-                    },
-                    {
-                        author: {
-                            $regex: search,
-                            $options: "i",
-                        },
-                    },
-                    {
-                        date: {
-                            $regex: search,
-                            $options: "i",
-                        },
-                    },
-                ],
-            });
-        }
+        //     query.find({
+        //         $or: [
+        //             {
+        //                 title: {
+        //                     $regex: search,
+        //                     $options: 'i',
+        //                 },
+        //             },
+        //             {
+        //                 author: {
+        //                     $regex: search,
+        //                     $options: "i",
+        //                 },
+        //             },
+        //             {
+        //                 date: {
+        //                     $regex: search,
+        //                     $options: "i",
+        //                 },
+        //             },
+        //         ],
+        //     });
+        // }
 
 
         //sorting ko lagi
@@ -95,11 +95,11 @@ export const getNews = async (req, res) => {
         //     query = query.sort(sortBy);
         // }
 
-        //field anusar search garnako lagi
-        if (req.query.fields) {
-            const fields = req.query.fields.split(',').join(' ');
-            query = query.select(fields);
-        }
+        // //field anusar search garnako lagi
+        // if (req.query.fields) {
+        //     const fields = req.query.fields.split(',').join(' ');
+        //     query = query.select(fields);
+        // }
 
 
 
@@ -110,10 +110,11 @@ export const getNews = async (req, res) => {
 
 
         const news = (await query.skip(skip).limit(limit));
-        const newsForAdmin = await News.find().sort({ createdAt: -1 }).lean();
         const total = await News.countDocuments();
         const pages = Math.ceil(total / limit);
+        const newsForAdmin = (await query.sort({ createdAt: -1 }).lean());
 
+        
 
         return res.status(200).json({
             success: true,
