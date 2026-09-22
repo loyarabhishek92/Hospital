@@ -11,6 +11,8 @@ import SearchBar from "@/pages/search/SearchBar.jsx";
 export default function Header() {
     const [mobileMenu, setMobileMenu] = useState(false);
 
+    const closeMenu = () => setMobileMenu(false);
+
     const { user } = useSelector(state => state.userSlice);
 
     return (
@@ -19,7 +21,7 @@ export default function Header() {
             {/* top header  */}
             <div className="mx-auto max-w-7xl px-5 lg:px-8">
 
-                <div className=" flex min-h-[100px] flex-col gap-5 py-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-4">
+                <div className="flex min-h-[100px] flex-col gap-5 py-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-4">
 
                     {/* logo  */}
                     <NavLink to={'/'} className="hidden lg:flex lg:justify-start">
@@ -135,15 +137,15 @@ export default function Header() {
 
                         <div className="mx-auto flex max-w-7xl flex-col px-5 py-4">
 
-                            <NavLink to={'/'} className="border-b border-white/10 py-3 text-white">Home</NavLink>
-                            <NavLink to={'/about'} className="border-b border-white/10 py-3 text-white">About us</NavLink>
-                            <NavLink to={'/service'} className="border-b border-white/10 py-3 text-white">Services</NavLink>
-                            <NavLink to={'/doctor'} className="border-b border-white/10 py-3 text-white">Doctors</NavLink>
-                            <NavLink to={'/news'} className="border-b border-white/10 py-3 text-white">News</NavLink>
-                            <NavLink to={'/contact'} className="border-b border-white/10 py-3 text-white">Contact</NavLink>
-                            <NavLink to={'/appointment'} className="mt-4 rounded-full bg-[#bfd5fa] px-6 py-3 text-center font-medium text-gray-900">Appointment</NavLink>
-                            <NavLink to={'/login'} className="border-b border-white/10 py-3 text-white">Login</NavLink>
-                            <NavLink to={'/register'} className="border-b border-white/10 py-3 text-white">Sign up</NavLink>
+                            <NavLink to={'/'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Home</NavLink>
+                            <NavLink to={'/about'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">About us</NavLink>
+                            <NavLink to={'/service'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Services</NavLink>
+                            <NavLink to={'/doctor'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Doctors</NavLink>
+                            <NavLink to={'/news'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">News</NavLink>
+                            <NavLink to={'/contact'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Contact</NavLink>
+                            <NavLink to={'/appointment'} onClick={closeMenu} className="mt-4 rounded-full bg-[#bfd5fa] px-6 py-3 text-center font-medium text-gray-900">Appointment</NavLink>
+                            <NavLink to={'/login'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Login</NavLink>
+                            <NavLink to={'/register'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Sign up</NavLink>
                         </div>
 
                     </div>
