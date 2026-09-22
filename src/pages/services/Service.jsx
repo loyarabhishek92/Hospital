@@ -14,8 +14,7 @@ export default function Service() {
 
  if (isLoading) {
         return (
-            <section className="py-20  flex items-center justify-center">
-                <Spinner className={"size-30 text-blue-400"}/> 
+            <section className="py-20 flex items-center justify-center">
                 <h1>Loading services...</h1>
             </section>
         );
