@@ -9,11 +9,25 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Service() {
 
-  const {data, isLoading, error} = useGetServicesQuery();
+  const {data, isLoading, isError} = useGetServicesQuery();
   const nav = useNavigate();
 
-  if(isLoading) return <h1>Loading..</h1>
-  if(error) return <h1>{error.data}</h1>
+ if (isLoading) {
+        return (
+            <section className="py-20  flex items-center justify-center">
+                <Spinner className={"size-30 text-blue-400"}/> 
+                <h1>Loading services...</h1>
+            </section>
+        );
+    }
+
+    if (isError) {
+        return (
+            <section className="py-20 text-center text-red-500">
+                Failed to load services.
+            </section>
+        );
+    }
   
 
 
@@ -53,7 +67,7 @@ export default function Service() {
 
        {/* services section  */}
             <div className=' mt-15 grid grid-cols-1 lg:grid-cols-3 gap-6 mx-auto max-w-7xl px-5 lg:px-8'>
-              {data.services?.map((service, index) => (
+              {data?.services?.map((service, index) => (
                 <div key={index} className='rounded-sm border-2 border-gray-200'>
                   <img src={`${base}/${service.image}`} alt="image" className='rounded-t-sm object-cover h-80 w-full' />
                   <div className='flex flex-col space-y-2 py-5 px-5 pt-15'>
