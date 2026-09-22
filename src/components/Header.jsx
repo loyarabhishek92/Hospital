@@ -1,8 +1,8 @@
 import call from "../assets/icons/call.svg";
 import time from "../assets/icons/time.svg";
 import location from "../assets/icons/location.svg";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Menu, Search, X } from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import DropDownMenu from "./DropDownMenu.jsx";
 import { useState } from "react";
@@ -22,10 +22,10 @@ export default function Header() {
                 <div className=" flex min-h-[100px] flex-col gap-5 py-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-4">
 
                     {/* logo  */}
-                    <div className="hidden lg:flex lg:justify-start">
+                    <NavLink to={'/'} className="hidden lg:flex lg:justify-start">
                         <span className="text-[#253477] font-serif text-4xl font-bold tracking-tight sm:text-5xl">MED</span>
                         <span className="text-[#159EEC] font-serif text-4xl font-bold tracking-tight sm:text-5xl">DICAL</span>
-                    </div>
+                    </NavLink>
 
 
 
@@ -90,7 +90,6 @@ export default function Header() {
                         <NavLink to={'/doctor'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>Doctors</NavLink>
                         <NavLink to={'/news'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>News</NavLink>
                         <NavLink to={'/contact'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>Contact</NavLink>
-                        <NavLink to={'/try'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>Try</NavLink>
                     </div>
 
 
