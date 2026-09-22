@@ -5,6 +5,7 @@ import { Clock, LocationEdit, Mail, PhoneCall } from "lucide-react";
 import Footer from "@/components/Footer.jsx";
 import ContactForm from "@/components/ContactForm.jsx";
 import CommonNews from "@/components/CommonNews.jsx";
+import ContactContainer from "@/components/ContactContainer.jsx";
 
 export default function Contact() {
   return (
@@ -46,8 +47,8 @@ export default function Contact() {
         <div className="flex flex-col gap-x-5">
           <div className="flex flex-col gap-x-5 items-center lg:items-start">
 
-          <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Get in touch</h2>
-          <h1 className="text-3xl font-serif font-bold tracking-wider">Contact</h1>
+            <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">Get in touch</h2>
+            <h1 className="text-3xl font-serif font-bold tracking-wider">Contact</h1>
           </div>
 
 
@@ -58,7 +59,7 @@ export default function Contact() {
         </div>
 
         {/* contact media */}
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
           <div className="bg-[#BFD2F8]  py-15 pl-7 rounded-sm flex flex-col gap-y-1.5">
             <PhoneCall className="h-8 w-8" />
@@ -91,6 +92,8 @@ export default function Contact() {
 
 
         </div>
+
+        
 
       </div>
 

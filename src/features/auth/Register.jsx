@@ -20,7 +20,7 @@ export default function Register() {
   const [registerUser, { isLoading }] = useRegisterMutation();
 
   return (
-    <div className="pt-2 flex justify-end px-50">
+    <div className="mt-2 flex justify-end mx-auto px-5 max-w-7xl lg:px-8">
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Register your account</CardTitle>

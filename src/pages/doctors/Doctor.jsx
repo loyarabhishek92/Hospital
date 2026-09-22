@@ -128,7 +128,7 @@ export default function Doctor() {
 
 
         {/* Hero Content */}
-        <div className="relative flex flex-col items-center justify-center text-white space-y-6 w-150 my-15">
+        <div className="relative flex flex-col items-center justify-center text-white space-y-6 my-15 mx-auto max-w-7xl px-5 lg:px-8">
 
 
           <img src="" alt="imag" />

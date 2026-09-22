@@ -39,7 +39,7 @@ export default function EditDoctor() {
 
 
   return (
-    <div className="mt-5 px-50">
+    <div className="mt-5 mx-auto px-5 max-w-7xl lg:px-8">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>Edit your doctors</CardTitle>

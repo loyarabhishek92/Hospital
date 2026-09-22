@@ -96,7 +96,7 @@ export default function News() {
             <div key={index} className='flex flex-col space-y-3'>
               <img src={`${base}/${newsItem.image}`} alt="image" />
 
-              <div className="flex space-x-2 mt-3">
+              <div className="flex flex-wrap space-x-2 mt-3">
                 <div className="flex space-x-2">
                   <Calendar />
                   <span>{newsItem.date}</span>
@@ -201,7 +201,7 @@ export default function News() {
 
         {/* Recent News  */}
         <div className='grid shrink-0 mt-10 lg:mt-0'>
-          <RecentNews adminData={adminData} setSearchParams= {setSearchParams} />
+          <RecentNews adminData={adminData} setSearchParams={setSearchParams} />
         </div>
 
 
@@ -212,9 +212,8 @@ export default function News() {
 
 
       {/* footer section  */}
-      <div>
-        <Footer />
-      </div>
+      <Footer />
+
 
     </div >
   )

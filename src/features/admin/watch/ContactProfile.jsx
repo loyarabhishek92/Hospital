@@ -8,9 +8,8 @@ export default function ContactProfile() {
   
     if(isLoading) return <h1>Loading...</h1>
     if(error) return <h1>{error.data}</h1>
-    console.log(data)
   return (
-   <div className="pt-10 px-50">
+   <div className="mt-10 mx-auto px-5 max-w-7xl lg:px-8">
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -24,7 +23,7 @@ export default function ContactProfile() {
                 <TableBody>
 
 
-                    {data.contacts?.map(item => (
+                    {data?.contacts?.map(item => (
                         <TableRow key={item._id}>
                       
                             

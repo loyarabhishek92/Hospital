@@ -3,7 +3,7 @@ import { useGetDoctorsQuery } from "./doctorApi.js"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar.jsx";
 import { base } from "@/app/mainApi.js";
 import { Button } from "@/components/ui/button.jsx";
-import { EditIcon } from "lucide-react";
+import { EditIcon, Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import RemoveDoctor from "./RemoveDoctor.jsx";
 
@@ -18,9 +18,9 @@ export default function DoctorProfile() {
 
 
   return (
-    <div className="pt-10 px-50">
-            <div className="flex justify-end">
-                <Button onClick={() => nav('/form/addDoctor')} className= 'bg-blue-700'>Add Doctor</Button>
+    <div className="mt-10 mx-auto px-5 max-w-7xl lg:px-8">
+            <div className="flex justify-end mb-5">
+                <Button onClick={() => nav('/form/addDoctor')} className= 'bg-blue-700'>Add Doctor <Plus /></Button>
             </div>
             <Table>
                 <TableHeader>

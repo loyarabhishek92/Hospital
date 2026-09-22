@@ -39,8 +39,10 @@ export default function AddDoctor() {
     const { user } = useSelector(state => state.userSlice);
     const [addDoctor, { isLoading }] = useAddDoctorMutation();
     const nav = useNavigate();
+
+
     return (
-        <div className="mt-5 px-50">
+        <div className="mt-5 mx-auto px-5  max-w-7xl lg:px-8">
             <Card className="w-full">
                 <CardHeader>
                     <CardTitle>Add your Doctor</CardTitle>

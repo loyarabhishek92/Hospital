@@ -99,9 +99,8 @@ export default function NewsDetails() {
 
 
             {/* footer section  */}
-            <div>
-                <Footer />
-            </div>
+            <Footer />
+
 
         </div>
     )

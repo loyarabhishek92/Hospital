@@ -16,7 +16,7 @@ export default function Footer() {
           <p>Leading the way in Medical Execellence, Trusted Care.</p>
         </div>
 
-        <div className="grid grid-cols-2 lg:flex lg:flex-row lg:space-x-10">
+        <div className="grid grid-cols-1 space-y-6 lg:flex lg:flex-row lg:space-x-20">
           <div className="flex flex-col gap-y-3">
             <h2 className="text-xl font-extrabold">Important Links</h2>
             <nav className="flex flex-col gap-y-1.5">

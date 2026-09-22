@@ -23,7 +23,7 @@ export default function Login() {
 
 
   return (
-    <div className="pt-2 flex justify-end px-50">
+    <div className="mt-2 flex justify-end mx-auto px-5 max-w-7xl lg:px-8">
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>

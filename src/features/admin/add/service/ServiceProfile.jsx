@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button.jsx";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table.jsx";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar.jsx";
 import { base } from "@/app/mainApi.js";
-import { EditIcon } from "lucide-react";
+import { EditIcon, Plus } from "lucide-react";
 import RemoveService from "./RemoveService.jsx";
 
 
@@ -15,9 +15,9 @@ export default function ServiceProfile() {
     if (isLoading) return <h1>Loading...</h1>
     if (error) return <h1>{error.data}</h1>
     return (
-        <div className="pt-10 px-50">
+        <div className="mt-10 mx-auto px-5 max-w-7xl lg:px-8">
             <div className="flex justify-end">
-                <Button onClick={() => nav('/form/addService')} className='bg-blue-700'>Add Service</Button>
+                <Button onClick={() => nav('/form/addService')} className='bg-blue-700'>Add Service<Plus /></Button>
             </div>
             <Table>
                 <TableHeader>
