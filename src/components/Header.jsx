@@ -8,6 +8,16 @@ import DropDownMenu from "./DropDownMenu.jsx";
 import { useState } from "react";
 import SearchBar from "@/pages/search/SearchBar.jsx";
 
+
+
+
+const links = [["/", "Home"], ["/about", "About us"], ["/service", "Services"], ["/doctor", "Doctors"], ["/news", "News"], ["/contact", "Contact"]];
+
+
+
+
+
+
 export default function Header() {
     const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -86,12 +96,7 @@ export default function Header() {
 
                     {/* desktop menu  */}
                     <div className="hidden items-center gap-7 lg:flex">
-                        <NavLink to={'/'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>Home</NavLink>
-                        <NavLink to={'/about'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>About Us</NavLink>
-                        <NavLink to={'/service'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>Services</NavLink>
-                        <NavLink to={'/doctor'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>Doctors</NavLink>
-                        <NavLink to={'/news'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>News</NavLink>
-                        <NavLink to={'/contact'} className='text-base font-medium text-white transition hover:text-[#8fc9ff]'>Contact</NavLink>
+                         {links.map(([to, label]) => <NavLink key={to} to={to} className={({ isActive }) => isActive ? "text-base font-semibold tracking-wider text-[#8fc9ff]" : "text-base tracking-wider font-semibold text-white transition hover:text-[#8fc9ff]"}>{label}</NavLink>)}
                     </div>
 
 

@@ -69,7 +69,7 @@ export default function Footer() {
 
           {/* Facebook */}
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/abhishek.ganprati92"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-7 w-7 items-center justify-center rounded-full bg-[#BFD2F8] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#8dabe7]"
@@ -79,7 +79,7 @@ export default function Footer() {
 
           {/* Instagram */}
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/abhishek.ganprati92"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-7 w-7 items-center justify-center rounded-full bg-[#BFD2F8] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#8dabe7]"

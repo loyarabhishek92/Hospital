@@ -20,30 +20,66 @@ import { useNavigate } from 'react-router-dom';
 import { useGetServicesQuery } from '@/features/admin/add/service/serviceApi.js';
 import { Button } from '@/components/ui/button.jsx';
 import { Spinner } from '@/components/ui/spinner.jsx';
+import { useRef } from 'react';
 
 export default function Home() {
   const { data, isLoading, isError } = useGetDoctorsQuery();
   const { data: service } = useGetServicesQuery();
   const nav = useNavigate();
 
+  // 1. Initialize the ref with null
+  const appTargetRef = useRef();
+  const docTargetRef = useRef();
+  const conTargetRef = useRef();
+
+  const appHandleScroll = () => {
+    // 3. Access the DOM node using .current and trigger scrollIntoView
+    if (appTargetRef.current) {
+      appTargetRef.current.scrollIntoView({
+        behavior: 'smooth', // Enables smooth animation
+        block: 'start',     // Aligns the top of the element to the top of the viewport
+      });
+    }
+  };
+
+  const docHandleScroll = () => {
+    // 3. Access the DOM node using .current and trigger scrollIntoView
+    if (docTargetRef.current) {
+      docTargetRef.current.scrollIntoView({
+        behavior: 'smooth', // Enables smooth animation
+            // Aligns the top of the element to the top of the viewport
+      });
+    }
+  };
+
+  const conHandleScroll = () => {
+    // 3. Access the DOM node using .current and trigger scrollIntoView
+    if (conTargetRef.current) {
+      conTargetRef.current.scrollIntoView({
+        behavior: 'smooth', // Enables smooth animation
+        block: 'start',     // Aligns the top of the element to the top of the viewport
+      });
+    }
+  };
+
   if (isLoading) {
-        return (
-            <section className="py-20  flex items-center justify-center">
-                <Spinner className={"size-30 text-blue-400"}/> 
-                <h1>Loading page...</h1>
-            </section>
-        );
-    }
+    return (
+      <section className="py-20  flex items-center justify-center">
+        <Spinner className={"size-30 text-blue-400"} />
+        <h1>Loading page...</h1>
+      </section>
+    );
+  }
 
-    if (isError) {
-        return (
-            <section className="py-20 text-center text-red-500">
-                Failed to load page.
-            </section>
-        );
-    }
+  if (isError) {
+    return (
+      <section className="py-20 text-center text-red-500">
+        Failed to load page.
+      </section>
+    );
+  }
 
-    
+
   return (
     <div>
       {/* hero section  */}
@@ -84,7 +120,7 @@ export default function Home() {
             shadow-lg
             transition
             hover:-translate-y-2
-          "
+          " onClick={appHandleScroll}
           >
             <div>
               <h3 className="text-lg font-semibold">
@@ -116,7 +152,7 @@ export default function Home() {
             shadow-lg
             transition
             hover:-translate-y-2
-          "
+          " onClick={docHandleScroll}
           >
             <div>
               <h3 className="text-lg font-semibold">
@@ -148,7 +184,7 @@ export default function Home() {
             shadow-lg
             transition
             hover:-translate-y-2
-          "
+          " onClick={conHandleScroll}
           >
             <div>
               <h3 className="text-lg font-semibold">
@@ -278,7 +314,7 @@ export default function Home() {
 
           {data?.doctors?.map((doctor) => (
             <div className="flex flex-col space-y-2 justify-center items-center cursor-pointer border-2 border-gray-100 h-50 hover:bg-[#253477] hover:text-gray-200 hover:rounded-sm" key={doctor._id}>
-              <HeartPulse size={50}/>
+              <HeartPulse size={50} />
               <h1 className="font-serif">{doctor.specialist}</h1>
 
 
@@ -291,7 +327,7 @@ export default function Home() {
 
 
       {/* appointment form  */}
-      <div className='mt-15'>
+      <div className='mt-15' ref={appTargetRef}>
         <section className="relative min-h-screen overflow-scroll">
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${homeApp})` }}></div>
           <div className="absolute inset-0 bg-cover bg-center bg-white opacity-80"></div>
@@ -321,7 +357,7 @@ export default function Home() {
 
 
       {/* common doctor section  */}
-      <div className='mx-auto px-5 mt-20 max-w-7xl lg:px-8'>
+      <div className='mx-auto px-5 mt-20 max-w-7xl lg:px-8' ref={docTargetRef}>
         <div className="flex flex-col gap-x-5 justify-center items-center">
           <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">trusted care </h2>
           <h1 className="text-3xl font-serif font-bold tracking-wider text-[#253477]">Our Doctors</h1>
@@ -334,7 +370,9 @@ export default function Home() {
       <CommonNews />
 
       {/* contact container section  */}
-      <ContactContainer />
+      <div ref={conTargetRef}>
+        <ContactContainer />
+      </div>
 
       {/* footer section  */}
       <Footer />
