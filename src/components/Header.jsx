@@ -77,10 +77,10 @@ export default function Header() {
                 <div className="mx-auto flex h-[85px] max-w-7xl items-center justify-between px-5 lg:px-8">
 
                     {/* logo  */}
-                    <div className="lg:hidden flex justify-start">
+                    <NavLink to={'/'} className="lg:hidden flex justify-start">
                         <span className="text-[#BFD2F8] font-serif text-4xl font-bold tracking-tight sm:text-5xl">MED</span>
                         <span className="text-white font-serif text-4xl font-bold tracking-tight sm:text-5xl">DICAL</span>
-                    </div>
+                    </NavLink>
 
                     {/* desktop menu  */}
                     <div className="hidden items-center gap-7 lg:flex">
