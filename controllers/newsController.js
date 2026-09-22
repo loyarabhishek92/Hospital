@@ -110,7 +110,7 @@ export const getNews = async (req, res) => {
 
 
         const news = await query.skip(skip).limit(limit);
-        const newsForAdmin = await News.find({});
+        const newsForAdmin = await News.find({}).sort({createdAt: -1}).lean();
         const total = await News.countDocuments();
         const pages = Math.ceil(total / limit);
 
