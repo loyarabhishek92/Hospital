@@ -48,7 +48,7 @@ export default function Header() {
                             {/* Emergency  */}
                             <div className="flex items-center gap-3">
                                 <div>
-                                    <img src={call} className="h-5 w-5 lg:w-10 lg:h-10" alt="call" />
+                                    <img src={call} className="hidden lg:w-10 lg:h-10" alt="call" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium uppercase text-gray-900 sm:text-base">Emergency</p>
@@ -59,7 +59,7 @@ export default function Header() {
                             {/* working hours  */}
                             <div className="flex gap-3 items-center justify-center">
                                 <div>
-                                    <img src={time} className="h-5 w-5 lg:w-10 lg:h-10" alt="time" />
+                                    <img src={time} className="hidden lg:w-10 lg:h-10" alt="time" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium uppercase text-gray-900 sm:text-base">WORK HOUR</p>
@@ -71,7 +71,7 @@ export default function Header() {
                         {/* location  */}
                         <div className="flex gap-3 items-center">
                             <div>
-                                <img src={location} className="h-5 w-5 lg:w-10 lg:h-10" alt="location" />
+                                <img src={location} className="hidden lg:w-10 lg:h-10" alt="location" />
                             </div>
                             <div>
                                 <p className="text-sm font-medium uppercase text-gray-900 sm:text-center">LOCATION</p>
