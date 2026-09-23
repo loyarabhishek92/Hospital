@@ -10,7 +10,7 @@ import ContactContainer from "@/components/ContactContainer.jsx";
 export default function Contact() {
   return (
     <div>
-      <section className="relative min-h-70 overflow-hidden">
+      <section className="relative min-h-70 overflow-hidden ">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${contact})` }}></div>
         <div className="absolute inset-0 bg-cover bg-center bg-white opacity-45"></div>
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${appointmentCover})` }}></div>

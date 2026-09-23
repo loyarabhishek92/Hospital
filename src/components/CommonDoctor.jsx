@@ -65,7 +65,7 @@ export default function CommonDoctor() {
   
   return (
     
-      <div className='mx-auto px-5 max-w-7xl lg:px-8 mt-15 '>
+      <div className='mt-15'>
         {/* Carousel */}
       <div className="w-full">
 

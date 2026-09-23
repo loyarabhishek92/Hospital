@@ -92,10 +92,10 @@ export default function Home() {
 
         {/* main container  */}
         <div className='absolute inset-0 w-full h-full flex flex-col justify-center items-center lg:items-start space-y-1 lg:space-y-3 mx-auto max-w-7xl px-5 lg:px-8'>
-          <h2 className="uppercase text-blue-400 text-xl tracking-wider font-medium ">caring for life</h2>
-          <h1 className="text-3xl lg:text-5xl font-serif font-bold tracking-wider text-[#253477]">Leading the Way <br /> in Medical Excellence </h1>
+          <h2 className="uppercase text-blue-400 text-sm lg:text-2xl tracking-wider font-medium ">caring for life</h2>
+          <h1 className="text-sm lg:text-5xl font-serif font-bold tracking-wider text-[#253477]">Leading the Way <br /> in Medical Excellence </h1>
 
-          <Button className="text-black mt-5 lg:mt-10 w-fit px-10 py-6 rounded-full" onClick={() => nav('/service')}>Our Services</Button>
+          <Button className="text-black mt-2 lg:mt-10 w-fit px-5 lg:px-10 py-3 lg:py-6 rounded-full" onClick={() => nav('/service')}>Our Services</Button>
         </div>
 
 

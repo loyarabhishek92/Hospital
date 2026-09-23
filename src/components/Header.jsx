@@ -44,22 +44,22 @@ export default function Header() {
                     {/* information  */}
                     <div className="flex flex-col items-center justify-center gap-5 sm:flex-row sm:flex-wrap sm:gap-x-10 sm:gap-y-5 lg:flex-nowrap lg:gap-x-8">
 
-                        <div className="flex space-x-10">
+                        <div className="flex space-x-5 lg:space-x-10">
                             {/* Emergency  */}
                             <div className="flex items-center gap-3">
                                 <div>
-                                    <img src={call} className="h-10 w-10" alt="call" />
+                                    <img src={call} className="h-8 w-8 lg:w-10 lg:h-10" alt="call" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium uppercase text-gray-900 sm:text-base">Emergency</p>
-                                    <a href="tel: +977-9844580317" className="text-[#159EEC] whitespace-nowrap text-sm font-medium sm:text-base">(237) 542-254-854</a>
+                                    <a href="tel: +977-9844580317" className="text-[#159EEC] whitespace-nowrap text-sm font-medium sm:text-base hover:underline">(237) 542-254-854</a>
                                 </div>
                             </div>
 
                             {/* working hours  */}
-                            <div className="flex gap-3 items-center">
+                            <div className="flex gap-3 items-center justify-center">
                                 <div>
-                                    <img src={time} alt="time" />
+                                    <img src={time} className="h-8 w-8 lg:w-10 lg:h-10" alt="time" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium uppercase text-gray-900 sm:text-base">WORK HOUR</p>
@@ -71,7 +71,7 @@ export default function Header() {
                         {/* location  */}
                         <div className="flex gap-3 items-center">
                             <div>
-                                <img src={location} alt="location" />
+                                <img src={location} className="h-8 w-8 lg:w-10 lg:h-10" alt="location" />
                             </div>
                             <div>
                                 <p className="text-sm font-medium uppercase text-gray-900 sm:text-center">LOCATION</p>
@@ -96,7 +96,7 @@ export default function Header() {
 
                     {/* desktop menu  */}
                     <div className="hidden items-center gap-7 lg:flex">
-                         {links.map(([to, label]) => <NavLink key={to} to={to} className={({ isActive }) => isActive ? "text-base font-semibold tracking-wider text-[#8fc9ff]" : "text-base tracking-wider font-semibold text-white transition hover:text-[#8fc9ff]"}>{label}</NavLink>)}
+                        {links.map(([to, label]) => <NavLink key={to} to={to} className={({ isActive }) => isActive ? "text-base font-semibold tracking-wider text-[#8fc9ff]" : "text-base tracking-wider font-semibold text-white transition hover:text-[#8fc9ff]"}>{label}</NavLink>)}
                     </div>
 
 
@@ -142,12 +142,8 @@ export default function Header() {
 
                         <div className="mx-auto flex max-w-7xl flex-col px-5 py-4">
 
-                            <NavLink to={'/'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Home</NavLink>
-                            <NavLink to={'/about'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">About us</NavLink>
-                            <NavLink to={'/service'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Services</NavLink>
-                            <NavLink to={'/doctor'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Doctors</NavLink>
-                            <NavLink to={'/news'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">News</NavLink>
-                            <NavLink to={'/contact'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Contact</NavLink>
+                            {links.map(([to, label]) => <NavLink key={to} to={to} onClick={closeMenu} className={"border-b border-white/10 py-3 text-white"}>{label}</NavLink>)}
+
                             <NavLink to={'/appointment'} onClick={closeMenu} className="mt-4 rounded-full bg-[#bfd5fa] px-6 py-3 text-center font-medium text-gray-900">Appointment</NavLink>
                             <NavLink to={'/login'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Login</NavLink>
                             <NavLink to={'/register'} onClick={closeMenu} className="border-b border-white/10 py-3 text-white">Sign up</NavLink>

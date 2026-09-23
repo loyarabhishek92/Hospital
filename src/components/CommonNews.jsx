@@ -79,7 +79,7 @@ export default function CommonNews() {
             </div>
 
             {/* Carousel */}
-            <div className="mt-20 mx-auto px-5 max-w-7xl lg:px-8">
+            <div className="mt-20">
 
                 <Carousel
                     setApi={handleApi}
