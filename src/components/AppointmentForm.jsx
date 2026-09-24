@@ -148,26 +148,34 @@ export default function AppointmentForm() {
                   w-full
                   rounded-none
                   border-0
-                  bg-transparent
+                  
                   px-6
                   text-lg
                   text-white
                   focus:ring-0
                 "
                                     >
-                                        <SelectValue placeholder="Gender" />
+                                        <SelectValue placeholder="Gender" className="h-16
+                rounded-none
+                border-0
+                bg-transparent
+                px-6
+                text-lg
+                text-white
+                placeholder:text-white
+                focus-visible:ring-0"/>
                                     </SelectTrigger>
 
                                     <SelectContent>
-                                        <SelectItem value="male">
+                                        <SelectItem value="Male">
                                             Male
                                         </SelectItem>
 
-                                        <SelectItem value="female">
+                                        <SelectItem value="Female">
                                             Female
                                         </SelectItem>
 
-                                        <SelectItem value="other">
+                                        <SelectItem value="Other">
                                             Other
                                         </SelectItem>
                                     </SelectContent>

@@ -26,7 +26,7 @@ export default function Header() {
     const { user } = useSelector(state => state.userSlice);
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-white">
+        <header className="sticky top-0 z-410 w-full bg-white">
 
             {/* top header  */}
             <div className="mx-auto max-w-7xl px-5 lg:px-8">

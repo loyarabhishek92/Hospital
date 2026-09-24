@@ -93,19 +93,18 @@ export default function Contact() {
 
         </div>
 
-        
+
 
       </div>
 
-      {/* news */}
-      <div>
-        <CommonNews />
-      </div>
+      {/* news section */}
+
+      <CommonNews />
 
 
-      <div>
-        <Footer />
-      </div>
+
+      {/* footer section  */}
+      <Footer />
 
 
 
