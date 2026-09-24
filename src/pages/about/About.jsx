@@ -65,11 +65,11 @@ export default function About() {
       </div>
 
       {/* common doctor section  */}
-      <div className=" mt-20 flex flex-col gap-x-5 justify-center items-center">
+      <div className=" mt-20 flex flex-col gap-x-5 justify-center items-center mx-auto max-w-7xl px-5 lg:px-8">
         <h2 className="uppercase text-xl text-blue-400 tracking-wider font-extrabold">trusted care </h2>
         <h1 className="text-3xl font-serif font-bold tracking-wider">Our Doctors</h1>
-      </div>
       <CommonDoctor />
+      </div>
 
 
       {/* common news section  */}

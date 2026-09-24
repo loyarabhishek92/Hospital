@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label.jsx";
 import { Spinner } from "@/components/ui/spinner.jsx";
 import { Button } from "@/components/ui/button.jsx";
 import { toast } from "@/components/ui/toast.jsx";
+import { base } from "@/app/mainApi.js";
 
 
 export default function UserProfile() {
@@ -16,16 +17,22 @@ export default function UserProfile() {
     const { user } = useSelector(state => state.userSlice);
     const { isLoading, error, data } = useGetUserQuery(user.token);
      const nav = useNavigate();
-
     const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
 
+
     return (
-        <div className="p-5">
+        <div className="mt-5 mx-auto max-w-7xl px-5 lg:px-8">
             {isLoading ? <div className="animate-pulse mb-5">
                 <div className="bg-gray-300 h-32 w-64 rounded mb-3"></div>
                 <div className="bg-gray-300 h-4 w-40 rounded mb-2"></div>
                 <div className="bg-gray-300 h-4 w-32 rounded "></div>
-            </div> : <Card className="w-full max-w-sm">
+            </div> : <div className="border-2 border-gray-200 rounded-2xl w-full max-w-7xl flex flex-wrap p-5 gap-5">
+                <div className="flex flex-row items-center gap-2 lg:flex-col">
+                    <img  src={`${base}/${data?.image}`} className="h-20 w-20 lg:w-30 lg:h-30 rounded-full lg:rounded-sm border-2 border-amber-300" alt="profileimg" />
+
+                    <h1>{data?.username} | {data?.email} | {data?.role}</h1>
+                </div>
+                <Card className="w-full max-w-sm">
                 <CardHeader>
                     <CardTitle>Update your profile</CardTitle>
                     <CardDescription>
@@ -113,7 +120,8 @@ export default function UserProfile() {
 
                 </CardContent>
 
-            </Card>}
+            </Card>
+            </div>}
 
             
                         {/* {error?.data?.message} */}

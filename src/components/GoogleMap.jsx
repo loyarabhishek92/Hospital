@@ -21,7 +21,7 @@ export default function GoogleMap() {
   // New York coordinates
   const position = [27.7172, 85.3240];
   return (
-    <div className="w-full rounded-xl shadow-lg ">
+    <div className="relative z-0 overflow-hidden w-full rounded-xl shadow-lg ">
       <MapContainer
         center={position}
         zoom={12}
