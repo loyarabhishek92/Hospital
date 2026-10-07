@@ -23,7 +23,7 @@ import { Spinner } from '@/components/ui/spinner.jsx';
 import { useRef } from 'react';
 
 export default function Home() {
-  const { data, isLoading, error } = useGetDoctorsQuery();
+  const { data, isLoading, isError } = useGetDoctorsQuery();
   const { data: service } = useGetServicesQuery();
   const nav = useNavigate();
 
@@ -71,7 +71,7 @@ export default function Home() {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <section className="py-20 text-center text-red-500">
         Failed to load page.

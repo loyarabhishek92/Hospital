@@ -26,7 +26,7 @@ export default function UserProfile() {
                 <div className="bg-gray-300 h-32 w-64 rounded mb-3"></div>
                 <div className="bg-gray-300 h-4 w-40 rounded mb-2"></div>
                 <div className="bg-gray-300 h-4 w-32 rounded "></div>
-            </div> : <div className="border-2 border-gray-200 rounded-2xl w-full max-w-7xl flex flex-wrap p-5 gap-5">
+            </div> : <div className="max-w-7xl flex flex-wrap p-5 gap-5">
                 <div className="flex flex-row items-center gap-2 lg:flex-col">
                     <img  src={`${base}/${data?.image}`} className="h-20 w-20 lg:w-30 lg:h-30 rounded-full lg:rounded-sm border-2 border-amber-300" alt="profileimg" />
 
